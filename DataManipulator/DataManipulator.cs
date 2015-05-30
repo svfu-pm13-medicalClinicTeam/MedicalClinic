@@ -31,12 +31,11 @@ namespace MedicalClinic
             return user;
         }
 
-        public static List<Doctor> getDoctors(string specialization)
+        public static List<Doctor> getDoctorsByCondition(string condition)
         {
             List<Doctor> doctors = new List<Doctor>();
             NpgsqlConnection connection = new NpgsqlConnection(stringOfConnection);
-            NpgsqlCommand command = new NpgsqlCommand("select * from doctor where specialization = '" + 
-                                                      specialization + "';", connection);
+            NpgsqlCommand command = new NpgsqlCommand("select * from doctor" + condition, connection);
             connection.Open();
             NpgsqlDataReader reader = command.ExecuteReader();
 
@@ -49,6 +48,103 @@ namespace MedicalClinic
 
             connection.Close();
             return doctors;
+        }
+
+        public static List<Patient> getPatientByCondition(string condition)
+        {
+            List<Patient> patients = new List<Patient>();
+            NpgsqlConnection connection = new NpgsqlConnection(stringOfConnection);
+            NpgsqlCommand command = new NpgsqlCommand("select * from patient" + condition, connection);
+            connection.Open();
+            NpgsqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                patients.Add(new Patient(reader.GetInt32(0), reader.GetString(1), reader.GetString(2),
+                            reader.GetString(3), reader.GetChar(4), reader.GetDateTime(5), reader.GetString(6),
+                            reader.GetString(7), reader.GetString(8),reader.GetString(9)));
+            }
+
+            connection.Close();
+            return patients;
+        }
+
+        public static int insertIntoPatient(Patient patient)
+        {
+            NpgsqlConnection connection = new NpgsqlConnection(stringOfConnection);
+
+            connection.Open();
+
+            NpgsqlCommand command = new NpgsqlCommand("insert into patient values (default, :first_name, :middle_name,"+ 
+                                                      ":last_name, :gender, :date_of_birth, :passport, :inn, :polis,"+
+                                                      ":snils)", connection);
+
+            command.Parameters.Add("firs_tname", NpgsqlDbType.Varchar);
+            command.Parameters.Add("middle_name", NpgsqlDbType.Varchar);
+            command.Parameters.Add("last_tname", NpgsqlDbType.Varchar);
+            command.Parameters.Add("gender", NpgsqlDbType.Char);
+            command.Parameters.Add("date_of_birth", NpgsqlDbType.Date);
+            command.Parameters.Add("passport", NpgsqlDbType.Varchar);
+            command.Parameters.Add("inn", NpgsqlDbType.Varchar);
+            command.Parameters.Add("polis", NpgsqlDbType.Varchar);
+            command.Parameters.Add("snils", NpgsqlDbType.Varchar);
+
+            command.Prepare();
+
+            command.Parameters[0].Value = patient.FirstName;
+            command.Parameters[1].Value = patient.MiddleName;
+            command.Parameters[2].Value = patient.LastName;
+            command.Parameters[3].Value = patient.Gender;
+            command.Parameters[4].Value = patient.DateOfBirth;
+            command.Parameters[5].Value = patient.Passport;
+            command.Parameters[6].Value = patient.INN;
+            command.Parameters[7].Value = patient.Polis;
+            command.Parameters[8].Value = patient.Snils;
+
+            int changedOrAddedRows = command.ExecuteNonQuery();
+
+            connection.Close();
+
+            return changedOrAddedRows;
+        }
+
+        public static int insertIntoDoctor(Doctor doctor)
+        {
+            NpgsqlConnection connection = new NpgsqlConnection(stringOfConnection);
+
+            connection.Open();
+
+            NpgsqlCommand command = new NpgsqlCommand("insert into doctor values (default, :first_name, :middle_name," +
+                                                      ":last_name, :specialization, :category, :gender, :date_of_birth," +
+                                                      ":passport, :inn)", connection);
+
+            command.Parameters.Add("firs_tname", NpgsqlDbType.Varchar);
+            command.Parameters.Add("middle_name", NpgsqlDbType.Varchar);
+            command.Parameters.Add("last_tname", NpgsqlDbType.Varchar);
+            command.Parameters.Add("gender", NpgsqlDbType.Char);
+            command.Parameters.Add("date_of_birth", NpgsqlDbType.Date);
+            command.Parameters.Add("passport", NpgsqlDbType.Varchar);
+            command.Parameters.Add("inn", NpgsqlDbType.Varchar);
+            command.Parameters.Add("specialization", NpgsqlDbType.Varchar);
+            command.Parameters.Add("category", NpgsqlDbType.Varchar);
+
+            command.Prepare();
+
+            command.Parameters[0].Value = doctor.FirstName;
+            command.Parameters[1].Value = doctor.MiddleName;
+            command.Parameters[2].Value = doctor.LastName;
+            command.Parameters[3].Value = doctor.Specialization;
+            command.Parameters[4].Value = doctor.Category;
+            command.Parameters[5].Value = doctor.Gender;
+            command.Parameters[6].Value = doctor.DateOfBirth;
+            command.Parameters[7].Value = doctor.Passport;
+            command.Parameters[8].Value = doctor.INN;
+
+            int changedOrAddedRows = command.ExecuteNonQuery();
+
+            connection.Close();
+
+            return changedOrAddedRows;
         }
     }
 }

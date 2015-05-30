@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace MedicalClinic
 {
-    public partial class Autointefication : Form
+    public partial class Authentication : Form
     {
-        public Autointefication()
+        public Authentication()
         {
             InitializeComponent();
         }

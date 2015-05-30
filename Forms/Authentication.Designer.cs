@@ -1,6 +1,6 @@
 ﻿namespace MedicalClinic
 {
-    partial class Autointefication
+    partial class Authentication
     {
         /// <summary>
         /// Required designer variable.

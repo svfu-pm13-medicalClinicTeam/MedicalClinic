@@ -18,25 +18,24 @@ namespace MedicalClinic
 
         private void enterButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(DataManipulator.getUserByName(loginBox.Text).HPWD);
             if (Model.userExists(loginBox.Text, passwordBox.Text))
             {
+                this.Hide();
                 if (loginBox.Text != "admin")
                 {
                     MainUser mainUser = new MainUser();
-                    mainUser.Show();
-                    this.Hide();
+                    mainUser.ShowDialog();
                 }
                 else
                 {
                     MainAdmin mainAdmin = new MainAdmin();
-                    mainAdmin.Show();
-                    this.Hide();
+                    mainAdmin.ShowDialog();
                 }
+                this.Show();
             }
             else
             {
-                MessageBox.Show("error password");
+                MessageBox.Show("Неправильные логин или пароль");
             }
         }
     }

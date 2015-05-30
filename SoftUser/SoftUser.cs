@@ -88,7 +88,7 @@ namespace MedicalClinic
 
         bool isValidID(int _id)
         { 
-            return (id > 0);
+            return (_id > 0);
         }
 
         bool isValidLogin(string _login)

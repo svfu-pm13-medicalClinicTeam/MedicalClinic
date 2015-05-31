@@ -79,9 +79,9 @@ namespace MedicalClinic
                                                       ":last_name, :gender, :date_of_birth, :passport, :inn, :polis,"+
                                                       ":snils)", connection);
 
-            command.Parameters.Add("firs_tname", NpgsqlDbType.Varchar);
+            command.Parameters.Add("first_name", NpgsqlDbType.Varchar);
             command.Parameters.Add("middle_name", NpgsqlDbType.Varchar);
-            command.Parameters.Add("last_tname", NpgsqlDbType.Varchar);
+            command.Parameters.Add("last_name", NpgsqlDbType.Varchar);
             command.Parameters.Add("gender", NpgsqlDbType.Char);
             command.Parameters.Add("date_of_birth", NpgsqlDbType.Date);
             command.Parameters.Add("passport", NpgsqlDbType.Varchar);
@@ -118,18 +118,18 @@ namespace MedicalClinic
                                                       ":last_name, :specialization, :category, :gender, :date_of_birth," +
                                                       ":passport, :inn)", connection);
 
-            command.Parameters.Add("firs_tname", NpgsqlDbType.Varchar);
-            command.Parameters.Add("middle_name", NpgsqlDbType.Varchar);
-            command.Parameters.Add("last_tname", NpgsqlDbType.Varchar);
-            command.Parameters.Add("gender", NpgsqlDbType.Char);
-            command.Parameters.Add("date_of_birth", NpgsqlDbType.Date);
-            command.Parameters.Add("passport", NpgsqlDbType.Varchar);
-            command.Parameters.Add("inn", NpgsqlDbType.Varchar);
-            command.Parameters.Add("specialization", NpgsqlDbType.Varchar);
-            command.Parameters.Add("category", NpgsqlDbType.Varchar);
+            command.Parameters.Add(new NpgsqlParameter("first_name", NpgsqlDbType.Varchar));
+            command.Parameters.Add(new NpgsqlParameter("middle_name", NpgsqlDbType.Varchar));
+            command.Parameters.Add(new NpgsqlParameter("last_name", NpgsqlDbType.Varchar));
+            command.Parameters.Add(new NpgsqlParameter("specialization", NpgsqlDbType.Varchar));
+            command.Parameters.Add(new NpgsqlParameter("category", NpgsqlDbType.Varchar));
+            command.Parameters.Add(new NpgsqlParameter("gender", NpgsqlDbType.Char));
+            command.Parameters.Add(new NpgsqlParameter("date_of_birth", NpgsqlDbType.Date));
+            command.Parameters.Add(new NpgsqlParameter("passport", NpgsqlDbType.Varchar));
+            command.Parameters.Add(new NpgsqlParameter("inn", NpgsqlDbType.Varchar));
 
             command.Prepare();
-
+            
             command.Parameters[0].Value = doctor.FirstName;
             command.Parameters[1].Value = doctor.MiddleName;
             command.Parameters[2].Value = doctor.LastName;
@@ -157,10 +157,15 @@ namespace MedicalClinic
 
             while (reader.Read())
             {
-                schedule.Add(new Schedule(reader.GetInt32(0), reader.GetInt32(1), reader.GetDateTime(2),
-                            reader.GetTimeSpan(3), reader.GetInt32(4), reader.GetBoolean(5)));
+                try
+                {
+                    schedule.Add(new Schedule(reader.GetInt32(0), reader.GetInt32(1), reader.GetDateTime(2),
+                        new TimeSpan(reader.GetTime(3).Hours, reader.GetTime(3).Minutes, reader.GetTime(3).Seconds),
+                        reader.GetInt32(4), reader.GetBoolean(5)));
+                }
+                catch
+                { }
             }
-
             connection.Close();
             return schedule;
         }

@@ -146,5 +146,23 @@ namespace MedicalClinic
 
             return changedOrAddedRows;
         }
+
+        public static List<Schedule> getSchedule(string query)
+        {
+            List<Schedule> schedule = new List<Schedule>();
+            NpgsqlConnection connection = new NpgsqlConnection(stringOfConnection);
+            NpgsqlCommand command = new NpgsqlCommand(query, connection);
+            connection.Open();
+            NpgsqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                schedule.Add(new Schedule(reader.GetInt32(0), reader.GetInt32(1), reader.GetDateTime(2),
+                            reader.GetTimeSpan(3), reader.GetInt32(4), reader.GetBoolean(5)));
+            }
+
+            connection.Close();
+            return schedule;
+        }
     }
 }

@@ -64,17 +64,18 @@
             this.doctorOrPatientComboBox.Items.AddRange(new object[] {
             "Доктор",
             "Пациент"});
-            this.doctorOrPatientComboBox.Location = new System.Drawing.Point(123, 12);
+            this.doctorOrPatientComboBox.Location = new System.Drawing.Point(115, 10);
             this.doctorOrPatientComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.doctorOrPatientComboBox.Name = "doctorOrPatientComboBox";
             this.doctorOrPatientComboBox.Size = new System.Drawing.Size(100, 25);
             this.doctorOrPatientComboBox.TabIndex = 0;
+            this.doctorOrPatientComboBox.SelectedIndexChanged += new System.EventHandler(this.doctorOrPatientComboBox_SelectedIndexChanged);
             // 
             // selectLabel
             // 
             this.selectLabel.AutoSize = true;
             this.selectLabel.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.selectLabel.Location = new System.Drawing.Point(11, 12);
+            this.selectLabel.Location = new System.Drawing.Point(10, 10);
             this.selectLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.selectLabel.Name = "selectLabel";
             this.selectLabel.Size = new System.Drawing.Size(71, 17);
@@ -85,7 +86,7 @@
             // 
             this.surnameLabel.AutoSize = true;
             this.surnameLabel.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.surnameLabel.Location = new System.Drawing.Point(13, 59);
+            this.surnameLabel.Location = new System.Drawing.Point(10, 50);
             this.surnameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.surnameLabel.Name = "surnameLabel";
             this.surnameLabel.Size = new System.Drawing.Size(64, 17);
@@ -96,7 +97,7 @@
             // 
             this.nameLabel.AutoSize = true;
             this.nameLabel.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nameLabel.Location = new System.Drawing.Point(13, 101);
+            this.nameLabel.Location = new System.Drawing.Point(10, 90);
             this.nameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.nameLabel.Name = "nameLabel";
             this.nameLabel.Size = new System.Drawing.Size(36, 17);
@@ -107,7 +108,7 @@
             // 
             this.patronymicLabel.AutoSize = true;
             this.patronymicLabel.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.patronymicLabel.Location = new System.Drawing.Point(13, 149);
+            this.patronymicLabel.Location = new System.Drawing.Point(10, 130);
             this.patronymicLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.patronymicLabel.Name = "patronymicLabel";
             this.patronymicLabel.Size = new System.Drawing.Size(69, 17);
@@ -118,7 +119,7 @@
             // 
             this.dateOfBirthLabel.AutoSize = true;
             this.dateOfBirthLabel.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.dateOfBirthLabel.Location = new System.Drawing.Point(13, 190);
+            this.dateOfBirthLabel.Location = new System.Drawing.Point(10, 170);
             this.dateOfBirthLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.dateOfBirthLabel.Name = "dateOfBirthLabel";
             this.dateOfBirthLabel.Size = new System.Drawing.Size(103, 17);
@@ -127,28 +128,28 @@
             // 
             // SurnameTextBox
             // 
-            this.SurnameTextBox.Location = new System.Drawing.Point(123, 59);
+            this.SurnameTextBox.Location = new System.Drawing.Point(115, 50);
             this.SurnameTextBox.Name = "SurnameTextBox";
             this.SurnameTextBox.Size = new System.Drawing.Size(100, 25);
             this.SurnameTextBox.TabIndex = 10;
             // 
             // NameTextBox
             // 
-            this.NameTextBox.Location = new System.Drawing.Point(123, 98);
+            this.NameTextBox.Location = new System.Drawing.Point(115, 90);
             this.NameTextBox.Name = "NameTextBox";
             this.NameTextBox.Size = new System.Drawing.Size(100, 25);
             this.NameTextBox.TabIndex = 11;
             // 
             // patronymicTextBox
             // 
-            this.patronymicTextBox.Location = new System.Drawing.Point(123, 146);
+            this.patronymicTextBox.Location = new System.Drawing.Point(115, 130);
             this.patronymicTextBox.Name = "patronymicTextBox";
             this.patronymicTextBox.Size = new System.Drawing.Size(100, 25);
             this.patronymicTextBox.TabIndex = 12;
             // 
             // dateOfBirthTextBox
             // 
-            this.dateOfBirthTextBox.Location = new System.Drawing.Point(123, 187);
+            this.dateOfBirthTextBox.Location = new System.Drawing.Point(115, 170);
             this.dateOfBirthTextBox.Name = "dateOfBirthTextBox";
             this.dateOfBirthTextBox.Size = new System.Drawing.Size(100, 25);
             this.dateOfBirthTextBox.TabIndex = 13;
@@ -156,7 +157,7 @@
             // genderLabel
             // 
             this.genderLabel.AutoSize = true;
-            this.genderLabel.Location = new System.Drawing.Point(13, 235);
+            this.genderLabel.Location = new System.Drawing.Point(10, 210);
             this.genderLabel.Name = "genderLabel";
             this.genderLabel.Size = new System.Drawing.Size(33, 17);
             this.genderLabel.TabIndex = 14;
@@ -165,7 +166,7 @@
             // passportLabel
             // 
             this.passportLabel.AutoSize = true;
-            this.passportLabel.Location = new System.Drawing.Point(11, 273);
+            this.passportLabel.Location = new System.Drawing.Point(10, 250);
             this.passportLabel.Name = "passportLabel";
             this.passportLabel.Size = new System.Drawing.Size(61, 17);
             this.passportLabel.TabIndex = 15;
@@ -174,7 +175,7 @@
             // manRadioButton
             // 
             this.manRadioButton.AutoSize = true;
-            this.manRadioButton.Location = new System.Drawing.Point(114, 235);
+            this.manRadioButton.Location = new System.Drawing.Point(115, 210);
             this.manRadioButton.Name = "manRadioButton";
             this.manRadioButton.Size = new System.Drawing.Size(39, 21);
             this.manRadioButton.TabIndex = 18;
@@ -185,7 +186,7 @@
             // womanRadioButton
             // 
             this.womanRadioButton.AutoSize = true;
-            this.womanRadioButton.Location = new System.Drawing.Point(196, 233);
+            this.womanRadioButton.Location = new System.Drawing.Point(175, 210);
             this.womanRadioButton.Name = "womanRadioButton";
             this.womanRadioButton.Size = new System.Drawing.Size(39, 21);
             this.womanRadioButton.TabIndex = 19;
@@ -195,25 +196,24 @@
             // 
             // passportTextBox1
             // 
-            this.passportTextBox1.Location = new System.Drawing.Point(123, 273);
+            this.passportTextBox1.Location = new System.Drawing.Point(115, 250);
             this.passportTextBox1.Name = "passportTextBox1";
             this.passportTextBox1.Size = new System.Drawing.Size(100, 25);
             this.passportTextBox1.TabIndex = 20;
             // 
             // addButton
             // 
-            this.addButton.Location = new System.Drawing.Point(365, 255);
+            this.addButton.Location = new System.Drawing.Point(395, 240);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(100, 35);
             this.addButton.TabIndex = 21;
             this.addButton.Text = "Добавить";
             this.addButton.UseVisualStyleBackColor = true;
-            this.addButton.Click += new System.EventHandler(this.addButton_Click);
             // 
             // innLabel
             // 
             this.innLabel.AutoSize = true;
-            this.innLabel.Location = new System.Drawing.Point(287, 18);
+            this.innLabel.Location = new System.Drawing.Point(280, 10);
             this.innLabel.Name = "innLabel";
             this.innLabel.Size = new System.Drawing.Size(41, 17);
             this.innLabel.TabIndex = 22;
@@ -222,7 +222,7 @@
             // snilsLabel
             // 
             this.snilsLabel.AutoSize = true;
-            this.snilsLabel.Location = new System.Drawing.Point(287, 62);
+            this.snilsLabel.Location = new System.Drawing.Point(280, 50);
             this.snilsLabel.Name = "snilsLabel";
             this.snilsLabel.Size = new System.Drawing.Size(60, 17);
             this.snilsLabel.TabIndex = 23;
@@ -231,7 +231,7 @@
             // specializationLabel
             // 
             this.specializationLabel.AutoSize = true;
-            this.specializationLabel.Location = new System.Drawing.Point(287, 101);
+            this.specializationLabel.Location = new System.Drawing.Point(280, 90);
             this.specializationLabel.Name = "specializationLabel";
             this.specializationLabel.Size = new System.Drawing.Size(101, 17);
             this.specializationLabel.TabIndex = 24;
@@ -240,7 +240,7 @@
             // categoryLabel
             // 
             this.categoryLabel.AutoSize = true;
-            this.categoryLabel.Location = new System.Drawing.Point(287, 149);
+            this.categoryLabel.Location = new System.Drawing.Point(280, 130);
             this.categoryLabel.Name = "categoryLabel";
             this.categoryLabel.Size = new System.Drawing.Size(73, 17);
             this.categoryLabel.TabIndex = 25;
@@ -248,28 +248,28 @@
             // 
             // innTextBox
             // 
-            this.innTextBox.Location = new System.Drawing.Point(424, 18);
+            this.innTextBox.Location = new System.Drawing.Point(395, 10);
             this.innTextBox.Name = "innTextBox";
             this.innTextBox.Size = new System.Drawing.Size(100, 25);
             this.innTextBox.TabIndex = 26;
             // 
             // snilsTextBox
             // 
-            this.snilsTextBox.Location = new System.Drawing.Point(424, 62);
+            this.snilsTextBox.Location = new System.Drawing.Point(395, 50);
             this.snilsTextBox.Name = "snilsTextBox";
             this.snilsTextBox.Size = new System.Drawing.Size(100, 25);
             this.snilsTextBox.TabIndex = 27;
             // 
             // specializationTextBox
             // 
-            this.specializationTextBox.Location = new System.Drawing.Point(424, 101);
+            this.specializationTextBox.Location = new System.Drawing.Point(395, 90);
             this.specializationTextBox.Name = "specializationTextBox";
             this.specializationTextBox.Size = new System.Drawing.Size(100, 25);
             this.specializationTextBox.TabIndex = 28;
             // 
             // categoryTextBox
             // 
-            this.categoryTextBox.Location = new System.Drawing.Point(424, 149);
+            this.categoryTextBox.Location = new System.Drawing.Point(395, 130);
             this.categoryTextBox.Name = "categoryTextBox";
             this.categoryTextBox.Size = new System.Drawing.Size(100, 25);
             this.categoryTextBox.TabIndex = 29;
@@ -277,7 +277,7 @@
             // phoneLabel
             // 
             this.phoneLabel.AutoSize = true;
-            this.phoneLabel.Location = new System.Drawing.Point(287, 187);
+            this.phoneLabel.Location = new System.Drawing.Point(280, 170);
             this.phoneLabel.Name = "phoneLabel";
             this.phoneLabel.Size = new System.Drawing.Size(60, 17);
             this.phoneLabel.TabIndex = 30;
@@ -285,7 +285,7 @@
             // 
             // phoneTextBox
             // 
-            this.phoneTextBox.Location = new System.Drawing.Point(424, 190);
+            this.phoneTextBox.Location = new System.Drawing.Point(395, 170);
             this.phoneTextBox.Name = "phoneTextBox";
             this.phoneTextBox.Size = new System.Drawing.Size(100, 25);
             this.phoneTextBox.TabIndex = 31;
@@ -293,7 +293,7 @@
             // policyLabel
             // 
             this.policyLabel.AutoSize = true;
-            this.policyLabel.Location = new System.Drawing.Point(287, 15);
+            this.policyLabel.Location = new System.Drawing.Point(280, 10);
             this.policyLabel.Name = "policyLabel";
             this.policyLabel.Size = new System.Drawing.Size(47, 17);
             this.policyLabel.TabIndex = 32;
@@ -302,7 +302,7 @@
             // 
             // policyTextBox
             // 
-            this.policyTextBox.Location = new System.Drawing.Point(424, 18);
+            this.policyTextBox.Location = new System.Drawing.Point(395, 10);
             this.policyTextBox.Name = "policyTextBox";
             this.policyTextBox.Size = new System.Drawing.Size(100, 25);
             this.policyTextBox.TabIndex = 33;
@@ -312,7 +312,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(597, 328);
+            this.ClientSize = new System.Drawing.Size(521, 308);
             this.Controls.Add(this.policyTextBox);
             this.Controls.Add(this.policyLabel);
             this.Controls.Add(this.phoneTextBox);

@@ -72,7 +72,7 @@ namespace MedicalClinic
             if (doctorQuery != "")
             {
                 query += "select schedule.id, schedule.doctor_id, schedule.date_of_receipt," +
-                         "schedule.time_of_receipt, schedule.patient_id, schedule.busy from " +
+                         "schedule.time_of_receipt, schedule.patient_id, schedule.cabinet, schedule.busy from " +
                          "schedule inner join (" + doctorQuery + ") as needed_doctor on " +
                          "schedule.doctor_id = needed_doctor.id " + scheduleQuery;
             }
@@ -142,6 +142,29 @@ namespace MedicalClinic
         public static void addUser(SoftUser user)
         {
             DataManipulator.insertIntoSoftUsers(user);
+        }
+
+
+        public static void deleteUser(string login)
+        {
+            DataManipulator.deleteFromSoftUsers(login);
+        }
+
+
+        public static void changeAdminPassword(string oldPassword, string newPassword)
+        {
+            if (Model.userExists("admin", oldPassword))
+                DataManipulator.changeAdminPasswordInSoftUsers(GetHashString(GetHashString(newPassword));
+        }
+
+
+        public static Patient getPatient(string polis)
+        {
+            string condition = "WHERE polis = '" + polis + "'";
+
+            List<Patient> listPatient = DataManipulator.getPatientByCondition(condition);
+
+            return listPatient[0];
         }
     }
 }

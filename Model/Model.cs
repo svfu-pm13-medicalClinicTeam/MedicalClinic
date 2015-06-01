@@ -83,5 +83,24 @@ namespace MedicalClinic
 
             return DataManipulator.getSchedule(query);
         }
+        public static void formNewSchedule(Schedule schedule);
+        
+        public static void deleteSchedule(Schedule schedule);
+        
+        public static List<Schedule> getSchedule(string specialization, string category, string fromDate, string toDate, string fromTime, string toTime, string busy = "'f'")
+        
+        public static List<Doctor> getDoctors(string specialization, string category, string firstName, string middleName, string lastName);
+        
+        public static List<Patient> getPatients(string firstName, string middleName, string lastName);
+        
+        public static void addPatient(Patient patient);
+        
+        public static void addDoctor(Doctor doctor);
+            
+        public static void addUser(SoftUser user);
+        
+        public static void getDoctor(int id);
+        
+        public static void getPatient(int id);
     }
 }

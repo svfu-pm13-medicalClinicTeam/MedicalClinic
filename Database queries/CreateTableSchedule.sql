@@ -5,6 +5,7 @@ CREATE TABLE schedule
   date_of_receipt date NOT NULL,
   time_of_receipt time without time zone NOT NULL,
   patient_polis character varying(16) NOT NULL,
+  cabinet integer NOT NULL,
   busy boolean,
   CONSTRAINT schedule_pkey PRIMARY KEY (id),
   CONSTRAINT schedule_fkey_patient FOREIGN KEY (patient_polis)

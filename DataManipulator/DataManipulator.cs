@@ -377,5 +377,86 @@ namespace MedicalClinic
 
             return deletedOrAddedRows;
         }
+
+
+
+        public static int getPatientIdByPolis(int polis)
+        {
+            NpgsqlConnection connection = new NpgsqlConnection(stringOfConnection);
+
+            connection.Open();
+
+            NpgsqlCommand command = new NpgsqlCommand("select id from patient where polis = :polis", connection);
+
+            command.Parameters.Add("polis", NpgsqlDbType.Varchar);
+
+            command.Prepare();
+
+            command.Parameters[0].Value = polis;
+
+            int id;
+
+            try
+            {
+                id = (int)command.ExecuteScalar();
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return id;
+        }
+
+
+
+        public static int updateSchedule(int id, int polis, bool busy)
+        {
+            NpgsqlConnection connection = new NpgsqlConnection(stringOfConnection);
+
+            connection.Open();
+
+            NpgsqlCommand command = new NpgsqlCommand("update schedule set polis = :polis, busy = :busy where " +
+                                                      "id = :id);", connection);
+
+            command.Parameters.Add("polis", NpgsqlDbType.Integer);
+            command.Parameters.Add("busy", NpgsqlDbType.Boolean);
+            command.Parameters.Add("id", NpgsqlDbType.Integer);
+
+            command.Prepare();
+
+            command.Parameters[0].Value = polis;
+            command.Parameters[1].Value = busy;
+            command.Parameters[2].Value = id;
+
+            int changedOrAddedRows = command.ExecuteNonQuery();
+
+            connection.Close();
+
+            return changedOrAddedRows;
+        }
+
+
+
+        public static int deleteFromSoftUsers(string login)
+        {
+            NpgsqlConnection connection = new NpgsqlConnection(stringOfConnection);
+
+            connection.Open();
+
+            NpgsqlCommand command = new NpgsqlCommand("delete from soft_users where login = :login ", connection);
+
+            command.Parameters.Add("login", NpgsqlDbType.Varchar);
+
+            command.Prepare();
+
+            command.Parameters[0].Value = login;
+
+            int deletedOrAddedRows = command.ExecuteNonQuery();
+
+            connection.Close();
+
+            return deletedOrAddedRows;
+        }
     }
 }

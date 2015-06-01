@@ -18,7 +18,17 @@ namespace MedicalClinic
 
         private void deleUserButton_Click(object sender, EventArgs e)
         {
-
+            //нужно условие существования пользователя
+            if (userTextBox.Text != "")
+            {
+                Model.deleteUser(userTextBox.Text);
+                MessageBox.Show("Пользователь успешно удален");
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Не заполнено поле");
+            }
         }
     }
 }

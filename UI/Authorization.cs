@@ -18,7 +18,8 @@ namespace MedicalClinic
 
         private void enterButton_Click(object sender, EventArgs e)
         {
-            if (Model.userExists(loginTextBox.Text, passwordTextBox.Text))
+            if (loginTextBox.Text != "" && passwordTextBox.Text != "" && 
+                Model.userExists(loginTextBox.Text, passwordTextBox.Text))
             {
                 this.Hide();
                 if (loginTextBox.Text != "admin")

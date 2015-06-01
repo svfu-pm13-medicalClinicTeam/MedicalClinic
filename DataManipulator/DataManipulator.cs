@@ -302,10 +302,10 @@ namespace MedicalClinic
 
             connection.Open();
 
-            NpgsqlCommand command = new NpgsqlCommand("insert into soft_users values (default, :login, :hpwd", connection);
+            NpgsqlCommand command = new NpgsqlCommand("insert into soft_users values (default, :login, :hpwd)", connection);
 
-            command.Parameters.Add("login", NpgsqlDbType.Varchar);
-            command.Parameters.Add("hpwd", NpgsqlDbType.Varchar);
+            command.Parameters.Add(new NpgsqlParameter("login", NpgsqlDbType.Varchar));
+            command.Parameters.Add(new NpgsqlParameter("hpwd", NpgsqlDbType.Varchar));
 
             command.Prepare();
 
@@ -467,7 +467,7 @@ namespace MedicalClinic
 
             connection.Open();
 
-            NpgsqlCommand command = new NpgsqlCommand("update soft_users set hpwd = :hpwd);", connection);
+            NpgsqlCommand command = new NpgsqlCommand("update soft_users set hpwd = :hpwd;", connection);
 
             command.Parameters.Add("hpwd", NpgsqlDbType.Varchar);
 

@@ -18,7 +18,16 @@ namespace MedicalClinic
 
         private void addUserButton_Click(object sender, EventArgs e)
         {
-
+            if (userTextBox.Text != "" && passwordTextBox.Text != "")
+            {
+                Model.addUser(userTextBox.Text, passwordTextBox.Text);
+                MessageBox.Show("Пользователь успешно добавлен");
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Заполнены не все поля");
+            }
         }
     }
 }

@@ -47,5 +47,35 @@ namespace MedicalClinic
             }
 
         }
+
+        private void doctorOrPatientComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (doctorOrPatientComboBox.SelectedItem == "Доктор")
+            {
+                policyLabel.Visible = false;
+                policyTextBox.Visible = false;
+                snilsLabel.Visible = true;
+                snilsTextBox.Visible = true;
+                innLabel.Visible = true;
+                innTextBox.Visible = true;
+                specializationLabel.Visible = true;
+                specializationTextBox.Visible = true;
+                categoryLabel.Visible = true;
+                categoryTextBox.Visible = true;
+            }
+            else
+            {
+                policyLabel.Visible = true;
+                policyTextBox.Visible = true;
+                snilsLabel.Visible = false;
+                snilsTextBox.Visible = false;
+                innLabel.Visible = false;
+                innTextBox.Visible = false;
+                specializationLabel.Visible = false;
+                specializationTextBox.Visible = false;
+                categoryLabel.Visible = false;
+                categoryTextBox.Visible = false;
+            }
+        }
     }
 }

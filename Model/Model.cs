@@ -139,9 +139,10 @@ namespace MedicalClinic
 
 
             
-        public static void addUser(SoftUser user)
+        public static void addUser(string login, string password)
         {
-            DataManipulator.insertIntoSoftUsers(user);
+            string hpwd = GetHashString(GetHashString(password));
+            DataManipulator.insertIntoSoftUsers(new SoftUser(1, login, hpwd));
         }
 
 

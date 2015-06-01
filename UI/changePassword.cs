@@ -18,7 +18,16 @@ namespace MedicalClinic
 
         private void changePasswordButton_Click(object sender, EventArgs e)
         {
-
+            if (oldPasswordTextBox.Text != "" && newPasswordTextBox.Text != "")
+            {
+                Model.changeAdminPassword(oldPasswordTextBox.Text, newPasswordTextBox.Text);
+                MessageBox.Show("Пароль успешно изменен");
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Заполнены не все поля");
+            }
         }
     }
 }

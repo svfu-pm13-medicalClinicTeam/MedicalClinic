@@ -327,26 +327,26 @@ namespace MedicalClinic
 
             connection.Open();
 
-            NpgsqlCommand command = new NpgsqlCommand("insert into schedule values (default, :id, :doctor_id," +
+            NpgsqlCommand command = new NpgsqlCommand("insert into schedule values (default, :doctor_id," +
                                                                                    ":date_of_receipt, :time_of_receipt,"+ 
-                                                                                   ":patient_id, :busy)", 
+                                                                                   ":patient_id, :busy);", 
                                                       connection);
 
-            command.Parameters.Add("id", NpgsqlDbType.Integer);
             command.Parameters.Add("doctor_id", NpgsqlDbType.Integer);
             command.Parameters.Add("date_of_receipt", NpgsqlDbType.Date);
-            command.Parameters.Add("date_of_receipt", NpgsqlDbType.Time);
+            command.Parameters.Add("time_of_receipt", NpgsqlDbType.Time);
             command.Parameters.Add("patient_id", NpgsqlDbType.Integer);
             command.Parameters.Add("busy", NpgsqlDbType.Boolean);
 
             command.Prepare();
 
-            command.Parameters[0].Value = schedule.ID;
-            command.Parameters[1].Value = schedule.DoctorID;
-            command.Parameters[2].Value = schedule.DateOfReceipt;
-            command.Parameters[3].Value = schedule.TimeOfReceipt;
-            command.Parameters[4].Value = schedule.PatientID;
-            command.Parameters[5].Value = schedule.Busy;
+            command.Parameters[0].Value = schedule.DoctorID;
+            command.Parameters[1].Value = schedule.DateOfReceipt;
+            command.Parameters[2].Value = new NpgsqlTime(schedule.TimeOfReceipt.Hours,
+                                                         schedule.TimeOfReceipt.Minutes,
+                                                         schedule.TimeOfReceipt.Seconds);
+            command.Parameters[3].Value = schedule.PatientID;
+            command.Parameters[4].Value = schedule.Busy;
 
             int changedOrAddedRows = command.ExecuteNonQuery();
 

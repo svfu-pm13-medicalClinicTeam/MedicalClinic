@@ -41,47 +41,107 @@ namespace MedicalClinic
 
             if (specialization != null)
             {
-                doctorQuery = "select * from doctor where specialization = '"+specialization +"'";
+                doctorQuery = "select * from doctor where specialization = '"+specialization +"' ";
             }
 
             if (category != null && specialization != null)
             {
-                doctorQuery += "and category = '"+category+"'";
+                doctorQuery += " and category = '"+category+"' ";
             }
             else if (category != null && specialization == null)
             {
-                doctorQuery = "select * from doctor where category = '"+category+"'";
+                doctorQuery = "select * from doctor where category = '"+category+"' ";
             } 
 
-            scheduleQuery = "where date_of_receipt >= '"+fromDate+"'";
+            scheduleQuery = " where date_of_receipt >= '"+fromDate+"' ";
 
             if (toDate != null)
             {
-                scheduleQuery += "and date_of_receipt <= '"+toDate+"'";
+                scheduleQuery += " and date_of_receipt <= '"+toDate+"' ";
             }
 
-            scheduleQuery += "and time_of_receipt >= '"+fromTime+"'";
+            scheduleQuery += " and time_of_receipt >= '"+fromTime+"' ";
 
             if (toTime != null)
             {
-                scheduleQuery += "and time_of_receipt <= '"+toTime+"'";
+                scheduleQuery += " and time_of_receipt <= '"+toTime+"' ";
             }
 
-            scheduleQuery += "and busy = 'f';";
+            scheduleQuery += " and busy = " + "'" + busy + "' ";
 
             if (doctorQuery != "")
             {
-                query += "select * from schedule.id, schedule.doctor_id, schedule.date_of_receipt," +
-                         "schedule.time_of_receipt, schedule.patient_id, schdule.busy from " +
-                         "schedule inner join (" + doctorQuery + ") as needed_doctor on" +
+                query += "select schedule.id, schedule.doctor_id, schedule.date_of_receipt," +
+                         "schedule.time_of_receipt, schedule.patient_id, schedule.busy from " +
+                         "schedule inner join (" + doctorQuery + ") as needed_doctor on " +
                          "schedule.doctor_id = needed_doctor.id " + scheduleQuery;
             }
             else
             {
-                query += "select * from schedule" + scheduleQuery;
+                query += " select * from schedule " + scheduleQuery;
             }
 
             return DataManipulator.getSchedule(query);
+        }
+
+
+
+        public static void formNewSchedule(Schedule schedule)
+        {
+            DataManipulator.insertIntoSchedule(schedule);
+        }
+
+        
+
+        public static List<Doctor> getDoctors(string specialization, string category, string firstName, 
+                                              string middleName, string lastName)
+        {
+            string query = "select * from doctor ";
+            string condition = " where ";
+
+            if (specialization != null)
+            {
+                condition += "specialization = " + "'" + specialization + "' ";
+                if (category != null)
+                {
+                    condition += " and ";
+                }
+            }
+
+            if (category != null)
+            {
+                condition += " category = " + "'" + category + "' ";
+            }
+
+            if (firstName != null)
+            {
+                return DataManipulator.getDoctorsByConditionAndName(query, condition, firstName, middleName, lastName);
+            }
+            else
+            {
+                return DataManipulator.getDoctorsByCondition(condition);
+            }
+        }
+
+
+        
+        public static void addPatient(Patient patient)
+        {
+            DataManipulator.insertIntoPatient(patient);
+        }
+
+
+
+        public static void addDoctor(Doctor doctor)
+        {
+            DataManipulator.insertIntoDoctor(doctor);
+        }
+
+
+            
+        public static void addUser(SoftUser user)
+        {
+            DataManipulator.insertIntoSoftUsers(user);
         }
     }
 }

@@ -87,8 +87,6 @@ namespace MedicalClinic
         
         public static void deleteSchedule(Schedule schedule);
         
-        public static List<Schedule> getSchedule(string specialization, string category, string fromDate, string toDate, string fromTime, string toTime, string busy = "'f'")
-        
         public static List<Doctor> getDoctors(string specialization, string category, string firstName, string middleName, string lastName);
         
         public static List<Patient> getPatients(string firstName, string middleName, string lastName);

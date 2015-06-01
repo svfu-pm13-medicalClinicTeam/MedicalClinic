@@ -19,14 +19,14 @@ namespace MedicalClinic
 
         public Person()
         {
-            id = 1;
+            id = 2;
             firstName = "Иван";
             middleName = "Иванович";
             lastName = "Иванов";
             gender = 'м';
-            dateOfBirth = new DateTime(1, 1, 1990);
-            passport = "111111111111111111111";
-            inn = "111111111111";
+            dateOfBirth = new DateTime(1990, 1, 1);
+            passport = "111111111111111111121";
+            inn = "111111111112";
         }
 
         public Person(int _id, string _firstName, string _middleName, string _lastName, char _gender,

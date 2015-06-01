@@ -13,8 +13,8 @@ namespace MedicalClinic
 
         public Patient()
         {
-            polis = "1111111111111111";
-            snils = "11111111111";
+            polis = "1111111211111111";
+            snils = "11111113111";
         }
 
         public Patient(int _id, string _firstName, string _middleName, string _lastName, char _gender,

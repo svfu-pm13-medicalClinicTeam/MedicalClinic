@@ -67,7 +67,7 @@ namespace MedicalClinic
                     doctors.Add(new Doctor(reader.GetInt32(0), reader.GetString(1), reader.GetString(2),
                                            reader.GetString(3), reader.GetString(4), reader.GetString(5), 
                                            reader.GetChar(6), reader.GetDateTime(7), reader.GetString(8), 
-                                           reader.GetString(9)));
+                                           reader.GetString(9), reader.GetString(10)));
                 }
                 catch (DoctorInvalidCategoryException) 
                 {
@@ -122,7 +122,7 @@ namespace MedicalClinic
                     doctors.Add(new Doctor(reader.GetInt32(0), reader.GetString(1), reader.GetString(2),
                                            reader.GetString(3), reader.GetString(4), reader.GetString(5), 
                                            reader.GetChar(6), reader.GetDateTime(7), reader.GetString(8), 
-                                           reader.GetString(9)));
+                                           reader.GetString(9), reader.GetString(10)));
                 }
                 catch (PatientInvalidPolisException)
                 {
@@ -160,7 +160,7 @@ namespace MedicalClinic
                     patients.Add(new Patient(reader.GetInt32(0), reader.GetString(1), reader.GetString(2),
                                              reader.GetString(3), reader.GetChar(4), reader.GetDateTime(5), 
                                              reader.GetString(6), reader.GetString(7), reader.GetString(8), 
-                                             reader.GetString(9)));
+                                             reader.GetString(9), reader.GetString(10)));
                 }
                 catch (PatientInvalidPolisException)
                 {
@@ -281,8 +281,8 @@ namespace MedicalClinic
                 {
                     schedule.Add(new Schedule(reader.GetInt32(0), reader.GetInt32(1), reader.GetDateTime(2),
                                               new TimeSpan(reader.GetTime(3).Hours, reader.GetTime(3).Minutes, 
-                                                           reader.GetTime(3).Seconds),
-                                              reader.GetInt32(4), reader.GetBoolean(5)));
+                                                           reader.GetTime(3).Seconds), reader.GetInt32(4), 
+                                                           reader.GetInt32(5), reader.GetBoolean(6)));
                 }
                 catch (ScheduleInvalidIdException)
                 {
@@ -376,6 +376,110 @@ namespace MedicalClinic
             connection.Close();
 
             return deletedOrAddedRows;
+        }
+
+
+
+        public static int getPatientIdByPolis(int polis)
+        {
+            NpgsqlConnection connection = new NpgsqlConnection(stringOfConnection);
+
+            connection.Open();
+
+            NpgsqlCommand command = new NpgsqlCommand("select id from patient where polis = :polis", connection);
+
+            command.Parameters.Add("polis", NpgsqlDbType.Varchar);
+
+            command.Prepare();
+
+            command.Parameters[0].Value = polis;
+
+            int id;
+
+            try
+            {
+                id = (int)command.ExecuteScalar();
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return id;
+        }
+
+
+
+        public static int updateSchedule(int id, int polis, bool busy)
+        {
+            NpgsqlConnection connection = new NpgsqlConnection(stringOfConnection);
+
+            connection.Open();
+
+            NpgsqlCommand command = new NpgsqlCommand("update schedule set polis = :polis, busy = :busy where " +
+                                                      "id = :id);", connection);
+
+            command.Parameters.Add("polis", NpgsqlDbType.Integer);
+            command.Parameters.Add("busy", NpgsqlDbType.Boolean);
+            command.Parameters.Add("id", NpgsqlDbType.Integer);
+
+            command.Prepare();
+
+            command.Parameters[0].Value = polis;
+            command.Parameters[1].Value = busy;
+            command.Parameters[2].Value = id;
+
+            int changedOrAddedRows = command.ExecuteNonQuery();
+
+            connection.Close();
+
+            return changedOrAddedRows;
+        }
+
+
+
+        public static int deleteFromSoftUsers(string login)
+        {
+            NpgsqlConnection connection = new NpgsqlConnection(stringOfConnection);
+
+            connection.Open();
+
+            NpgsqlCommand command = new NpgsqlCommand("delete from soft_users where login = :login ", connection);
+
+            command.Parameters.Add("login", NpgsqlDbType.Varchar);
+
+            command.Prepare();
+
+            command.Parameters[0].Value = login;
+
+            int deletedOrAddedRows = command.ExecuteNonQuery();
+
+            connection.Close();
+
+            return deletedOrAddedRows;
+        }
+
+
+
+        public static int changeAdminPasswordInSoftUsers(string newPassword)
+        {
+            NpgsqlConnection connection = new NpgsqlConnection(stringOfConnection);
+
+            connection.Open();
+
+            NpgsqlCommand command = new NpgsqlCommand("update soft_users set hpwd = :hpwd);", connection);
+
+            command.Parameters.Add("hpwd", NpgsqlDbType.Varchar);
+
+            command.Prepare();
+
+            command.Parameters[0].Value = newPassword;
+
+            int changedOrAddedRows = command.ExecuteNonQuery();
+
+            connection.Close();
+
+            return changedOrAddedRows;
         }
     }
 }

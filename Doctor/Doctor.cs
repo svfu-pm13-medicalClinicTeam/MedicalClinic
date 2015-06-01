@@ -18,8 +18,9 @@ namespace MedicalClinic
         }
 
         public Doctor(int _id, string _firstName, string _middleName, string _lastName, string _specialization,
-                      string _category, char _gender, DateTime _dateOfBirth, string _passport, string _inn) : 
-        base(_id, _firstName, _middleName, _lastName, _gender, _dateOfBirth, _passport, _inn)
+                      string _category, char _gender, DateTime _dateOfBirth, string _passport, string _inn,
+                      string _telephoneNumber) : 
+        base(_id, _firstName, _middleName, _lastName, _gender, _dateOfBirth, _passport, _inn, _telephoneNumber)
         {
             specialization = _specialization;
             if (isValidCategory(_category))

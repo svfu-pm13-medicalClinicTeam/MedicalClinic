@@ -18,8 +18,9 @@ namespace MedicalClinic
         }
 
         public Patient(int _id, string _firstName, string _middleName, string _lastName, char _gender,
-                      DateTime _dateOfBirth, string _passport, string _inn, string _polis, string _snils) :
-        base(_id, _firstName, _middleName, _lastName, _gender, _dateOfBirth, _passport, _inn)
+                      DateTime _dateOfBirth, string _passport, string _inn, string _polis, string _snils, 
+                      string _telephoneNumber) :
+        base(_id, _firstName, _middleName, _lastName, _gender, _dateOfBirth, _passport, _inn, _telephoneNumber)
         {
             if (isValidPolis(_polis))
             {

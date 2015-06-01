@@ -16,6 +16,7 @@ namespace MedicalClinic
         DateTime dateOfBirth;
         string passport;
         string inn;
+        string telephoneNumber;
 
         public Person()
         {
@@ -27,12 +28,13 @@ namespace MedicalClinic
             dateOfBirth = new DateTime(1990, 1, 1);
             passport = "111111111111111111121";
             inn = "111111111112";
+            telephoneNumber = "79141111111";
         }
 
         public Person(int _id, string _firstName, string _middleName, string _lastName, char _gender,
-                      DateTime _dateOfBirth, string _passport, string _inn)
+                      DateTime _dateOfBirth, string _passport, string _inn, string _telephoneNumber)
         {
-            if (isValidInputData(_id, _gender, _passport, _inn))
+            if (isValidInputData(_id, _gender, _passport, _inn, _telephoneNumber))
             {
                 id = _id;
                 firstName = _firstName;
@@ -42,6 +44,7 @@ namespace MedicalClinic
                 dateOfBirth = _dateOfBirth;
                 passport = _passport;
                 inn = _inn;
+                telephoneNumber = _telephoneNumber;
             }
             else
             {
@@ -173,9 +176,29 @@ namespace MedicalClinic
             }
         }
 
-        private bool isValidInputData(int _id, char _gender, string _passport, string _inn)
+        public string TelephoneNumber
         {
-            return (isValidID(_id) && isValidGender(_gender) && isValidPassport(_passport) && isValidINN(_inn));
+            set
+            {
+                if (isValidTelephoneNumber(value))
+                {
+                    telephoneNumber = value;
+                }
+                else
+                {
+                    throw new PersonInvalidTelephoneNumberException();
+                }
+            }
+            get
+            {
+                return telephoneNumber;
+            }
+        }
+
+        private bool isValidInputData(int _id, char _gender, string _passport, string _inn, string _telephoneNumber)
+        {
+            return (isValidID(_id) && isValidGender(_gender) && isValidPassport(_passport) && isValidINN(_inn) &&
+                    isValidTelephoneNumber(_telephoneNumber));
         }
 
         private bool isValidID(int _id)
@@ -200,6 +223,13 @@ namespace MedicalClinic
             int innLength = 12;
 
             return (_inn.Length == innLength);
+        }
+
+        private bool isValidTelephoneNumber(string _telephoneNumber)
+        {
+            int length = 12;
+
+            return (telephoneNumber.Length <= length);
         }
     }
 }

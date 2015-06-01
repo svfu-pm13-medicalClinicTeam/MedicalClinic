@@ -13,6 +13,7 @@ namespace MedicalClinic
         DateTime dateOfReceipt;
         TimeSpan timeOfReceipt;
         int patientId;
+        int cabinet;
         bool busy;
 
         public Schedule()
@@ -21,23 +22,39 @@ namespace MedicalClinic
             doctorId = 1;
             dateOfReceipt = new DateTime(1, 1, 2015);
             timeOfReceipt = new TimeSpan(0, 0, 0);
+            patientId = 1;
+            cabinet = 1;
+            busy = true;
         }
 
         public Schedule(int _id, int _doctorId, DateTime _dateOfReceipt, TimeSpan _timeOfReceipt,
-                        int _patientId, bool _busy)
+                        int _patientId, int _cabinet, bool _busy)
         {
-            if (isValidId(_id) && isValidId(_doctorId) && isValidId(_patientId))
+            if (isValidId(_id) && isValidId(_doctorId) && isValidId(_patientId) && isValidId(cabinet))
             {
                 id = _id;
                 dateOfReceipt = _dateOfReceipt;
                 timeOfReceipt = _timeOfReceipt;
                 doctorId = _doctorId;
                 patientId = _patientId;
+                cabinet = _cabinet;
                 busy = _busy;
             }
             else
             {
                 throw new ScheduleInvalidIdException();
+            }
+        }
+
+        public int Cabinet
+        {
+            set
+            {
+                cabinet = value;
+            }
+            get
+            {
+                return cabinet;
             }
         }
 

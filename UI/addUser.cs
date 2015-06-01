@@ -18,7 +18,14 @@ namespace MedicalClinic
 
         private void addUserButton_Click(object sender, EventArgs e)
         {
-
+            if (userTextBox.Text != "" && passwordTextBox.Text != "")
+            {
+                Model.addUser(new SoftUser(1, userTextBox.Text, passwordTextBox.Text));
+            }
+            else
+            {
+                MessageBox.Show("Заполнены не все поля");
+            }
         }
     }
 }

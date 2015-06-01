@@ -27,6 +27,10 @@ namespace MedicalClinic
                 login = _login;
                 hpwd = _hpwd;
             }
+            else
+            {
+                throw new SoftUserInvalidInputDataException();
+            }
         }
 
         public int ID
@@ -36,6 +40,10 @@ namespace MedicalClinic
                 if (isValidID(value))
                 {
                     id = value;
+                }
+                else
+                {
+                    throw new SoftUserInvalidIdException();
                 }
             }
             get
@@ -48,9 +56,13 @@ namespace MedicalClinic
         {
             set
             {
-                if (isValidLogin(value)) 
+                if (isValidLogin(value))
                 {
                     login = value;
+                }
+                else
+                {
+                    throw new SoftUserInvalidLoginException();
                 }
             }
             get
@@ -66,6 +78,10 @@ namespace MedicalClinic
                 if (isValidHPWD(value))
                 {
                     hpwd = value;
+                }
+                else
+                {
+                    throw new SoftUserInvalidHPWDException();
                 }
             }
             get

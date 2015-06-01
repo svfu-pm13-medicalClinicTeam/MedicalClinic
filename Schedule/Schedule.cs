@@ -26,11 +26,12 @@ namespace MedicalClinic
         public Schedule(int _id, int _doctorId, DateTime _dateOfReceipt, TimeSpan _timeOfReceipt,
                         int _patientId, bool _busy)
         {
-            if (isValidId(_id))
+            if (isValidId(_id) && isValidId(_doctorId) && isValidId(_patientId))
             {
                 id = _id;
                 dateOfReceipt = _dateOfReceipt;
                 timeOfReceipt = _timeOfReceipt;
+                doctorId = _doctorId;
                 patientId = _patientId;
                 busy = _busy;
             }

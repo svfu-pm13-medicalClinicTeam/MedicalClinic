@@ -458,5 +458,28 @@ namespace MedicalClinic
 
             return deletedOrAddedRows;
         }
+
+
+
+        public static int changeAdminPasswordInSoftUsers(string newPassword)
+        {
+            NpgsqlConnection connection = new NpgsqlConnection(stringOfConnection);
+
+            connection.Open();
+
+            NpgsqlCommand command = new NpgsqlCommand("update soft_users set hpwd = :hpwd);", connection);
+
+            command.Parameters.Add("hpwd", NpgsqlDbType.Varchar);
+
+            command.Prepare();
+
+            command.Parameters[0].Value = newPassword;
+
+            int changedOrAddedRows = command.ExecuteNonQuery();
+
+            connection.Close();
+
+            return changedOrAddedRows;
+        }
     }
 }

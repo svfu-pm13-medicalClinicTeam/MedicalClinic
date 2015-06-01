@@ -1,6 +1,6 @@
 ﻿namespace MedicalClinic
 {
-    partial class Authorization
+    partial class authorization
     {
         /// <summary>
         /// Required designer variable.
@@ -33,6 +33,7 @@
             this.loginTextBox = new System.Windows.Forms.TextBox();
             this.passwordTextBox = new System.Windows.Forms.TextBox();
             this.enterButton = new System.Windows.Forms.Button();
+            this.remainInTheSystemCheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // loginLabel
@@ -81,12 +82,27 @@
             this.enterButton.UseVisualStyleBackColor = true;
             this.enterButton.Click += new System.EventHandler(this.enterButton_Click);
             // 
-            // Authorization
+            // remainInTheSystemCheckBox
             // 
+            this.remainInTheSystemCheckBox.AutoSize = true;
+            this.remainInTheSystemCheckBox.Checked = true;
+            this.remainInTheSystemCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.remainInTheSystemCheckBox.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.remainInTheSystemCheckBox.Location = new System.Drawing.Point(12, 186);
+            this.remainInTheSystemCheckBox.Name = "remainInTheSystemCheckBox";
+            this.remainInTheSystemCheckBox.Size = new System.Drawing.Size(154, 21);
+            this.remainInTheSystemCheckBox.TabIndex = 5;
+            this.remainInTheSystemCheckBox.Text = "Остаться в системе";
+            this.remainInTheSystemCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // authorization
+            // 
+            this.AcceptButton = this.enterButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(334, 212);
+            this.Controls.Add(this.remainInTheSystemCheckBox);
             this.Controls.Add(this.enterButton);
             this.Controls.Add(this.passwordTextBox);
             this.Controls.Add(this.loginTextBox);
@@ -96,7 +112,7 @@
             this.MaximumSize = new System.Drawing.Size(350, 250);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(350, 250);
-            this.Name = "Authorization";
+            this.Name = "authorization";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Авторизация";
             this.ResumeLayout(false);
@@ -111,6 +127,7 @@
         private System.Windows.Forms.TextBox loginTextBox;
         private System.Windows.Forms.TextBox passwordTextBox;
         private System.Windows.Forms.Button enterButton;
+        private System.Windows.Forms.CheckBox remainInTheSystemCheckBox;
     }
 }
 

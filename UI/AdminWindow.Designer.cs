@@ -1,6 +1,6 @@
 ﻿namespace MedicalClinic
 {
-    partial class AdminWindow
+    partial class adminWindow
     {
         /// <summary>
         /// Required designer variable.

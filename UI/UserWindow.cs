@@ -9,21 +9,23 @@ using System.Windows.Forms;
 
 namespace MedicalClinic
 {
-    public partial class UserWindow : Form
+    public partial class userWindow : Form
     {
-        public UserWindow()
+        public userWindow()
         {
             InitializeComponent();
         }
 
         private void registrationButton_Click(object sender, EventArgs e)
         {
-
+            registration registration = new registration();
+            registration.ShowDialog();
         }
 
         private void editSchedule_Click(object sender, EventArgs e)
         {
-
+            editSchedule editSchedule = new editSchedule();
+            editSchedule.ShowDialog();
         }
     }
 }

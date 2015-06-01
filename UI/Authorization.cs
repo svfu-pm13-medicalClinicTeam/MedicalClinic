@@ -9,17 +9,41 @@ using System.Windows.Forms;
 
 namespace MedicalClinic
 {
-    public partial class Authorization : Form
+    public partial class authorization : Form
     {
-        public Authorization()
+        public authorization()
         {
             InitializeComponent();
         }
 
         private void enterButton_Click(object sender, EventArgs e)
         {
+            if (Model.userExists(loginTextBox.Text, passwordTextBox.Text))
+            {
+                this.Hide();
+                if (loginTextBox.Text != "admin")
+                {
+                    userWindow userWindow = new userWindow();
+                    userWindow.ShowDialog();
+                }
+                else
+                {
+                    adminWindow AdminWindow = new adminWindow();
+                    AdminWindow.ShowDialog();
+                }
+                if (remainInTheSystemCheckBox.Checked == false)
+                {
+                    loginTextBox.Text = "";
+                    passwordTextBox.Text = "";
+                }
+                this.Show();
+                loginTextBox.Focus();
+            }
+            else
+            {
+                MessageBox.Show("Неверные логин или пароль");
+            }
 
         }
     }
 }
-

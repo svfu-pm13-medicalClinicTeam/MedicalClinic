@@ -29,9 +29,7 @@
         private void InitializeComponent()
         {
             this.deleteUserButton = new System.Windows.Forms.Button();
-            this.passwordTextBox = new System.Windows.Forms.TextBox();
             this.userTextBox = new System.Windows.Forms.TextBox();
-            this.passwordLabel = new System.Windows.Forms.Label();
             this.userLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -46,30 +44,12 @@
             this.deleteUserButton.UseVisualStyleBackColor = true;
             this.deleteUserButton.Click += new System.EventHandler(this.deleUserButton_Click);
             // 
-            // passwordTextBox
-            // 
-            this.passwordTextBox.Location = new System.Drawing.Point(185, 100);
-            this.passwordTextBox.Name = "passwordTextBox";
-            this.passwordTextBox.Size = new System.Drawing.Size(110, 20);
-            this.passwordTextBox.TabIndex = 13;
-            this.passwordTextBox.UseSystemPasswordChar = true;
-            // 
             // userTextBox
             // 
             this.userTextBox.Location = new System.Drawing.Point(185, 50);
             this.userTextBox.Name = "userTextBox";
             this.userTextBox.Size = new System.Drawing.Size(110, 20);
             this.userTextBox.TabIndex = 12;
-            // 
-            // passwordLabel
-            // 
-            this.passwordLabel.AutoSize = true;
-            this.passwordLabel.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.passwordLabel.Location = new System.Drawing.Point(35, 100);
-            this.passwordLabel.Name = "passwordLabel";
-            this.passwordLabel.Size = new System.Drawing.Size(58, 19);
-            this.passwordLabel.TabIndex = 11;
-            this.passwordLabel.Text = "Пароль";
             // 
             // userLabel
             // 
@@ -87,9 +67,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(334, 212);
             this.Controls.Add(this.deleteUserButton);
-            this.Controls.Add(this.passwordTextBox);
             this.Controls.Add(this.userTextBox);
-            this.Controls.Add(this.passwordLabel);
             this.Controls.Add(this.userLabel);
             this.Name = "deleteUser";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -102,9 +80,7 @@
         #endregion
 
         private System.Windows.Forms.Button deleteUserButton;
-        private System.Windows.Forms.TextBox passwordTextBox;
         private System.Windows.Forms.TextBox userTextBox;
-        private System.Windows.Forms.Label passwordLabel;
         private System.Windows.Forms.Label userLabel;
 
     }

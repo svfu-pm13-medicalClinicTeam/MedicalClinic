@@ -1,6 +1,6 @@
 ﻿namespace MedicalClinic
 {
-    partial class UserWindow
+    partial class userWindow
     {
         /// <summary>
         /// Required designer variable.

@@ -10,6 +10,8 @@ CREATE TABLE doctor
   date_of_birth date,
   passport character varying(21),
   inn character varying(12),
+  telephone_number character varying(12),
+
   CONSTRAINT doctor_pkey PRIMARY KEY (id),
   CONSTRAINT doctor_inn_key UNIQUE (inn),
   CONSTRAINT doctor_passport_key UNIQUE (passport)

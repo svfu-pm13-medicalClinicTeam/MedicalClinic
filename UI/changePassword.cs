@@ -21,6 +21,8 @@ namespace MedicalClinic
             if (oldPasswordTextBox.Text != "" && newPasswordTextBox.Text != "")
             {
                 Model.changeAdminPassword(oldPasswordTextBox.Text, newPasswordTextBox.Text);
+                MessageBox.Show("Пароль успешно изменен");
+                this.Close();
             }
             else
             {

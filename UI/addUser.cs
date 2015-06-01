@@ -20,7 +20,9 @@ namespace MedicalClinic
         {
             if (userTextBox.Text != "" && passwordTextBox.Text != "")
             {
-                Model.addUser(new SoftUser(1, userTextBox.Text, passwordTextBox.Text));
+                Model.addUser(userTextBox.Text, passwordTextBox.Text);
+                MessageBox.Show("Пользователь успешно добавлен");
+                this.Close();
             }
             else
             {

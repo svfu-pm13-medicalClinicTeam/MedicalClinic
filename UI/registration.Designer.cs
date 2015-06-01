@@ -67,7 +67,7 @@
             this.doctorOrPatientComboBox.Location = new System.Drawing.Point(115, 10);
             this.doctorOrPatientComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.doctorOrPatientComboBox.Name = "doctorOrPatientComboBox";
-            this.doctorOrPatientComboBox.Size = new System.Drawing.Size(100, 25);
+            this.doctorOrPatientComboBox.Size = new System.Drawing.Size(100, 29);
             this.doctorOrPatientComboBox.TabIndex = 0;
             this.doctorOrPatientComboBox.SelectedIndexChanged += new System.EventHandler(this.doctorOrPatientComboBox_SelectedIndexChanged);
             // 
@@ -78,7 +78,7 @@
             this.selectLabel.Location = new System.Drawing.Point(10, 10);
             this.selectLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.selectLabel.Name = "selectLabel";
-            this.selectLabel.Size = new System.Drawing.Size(71, 17);
+            this.selectLabel.Size = new System.Drawing.Size(89, 21);
             this.selectLabel.TabIndex = 1;
             this.selectLabel.Text = "Выберите";
             // 
@@ -89,7 +89,7 @@
             this.surnameLabel.Location = new System.Drawing.Point(10, 50);
             this.surnameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.surnameLabel.Name = "surnameLabel";
-            this.surnameLabel.Size = new System.Drawing.Size(64, 17);
+            this.surnameLabel.Size = new System.Drawing.Size(82, 21);
             this.surnameLabel.TabIndex = 2;
             this.surnameLabel.Text = "Фамилия";
             // 
@@ -100,7 +100,7 @@
             this.nameLabel.Location = new System.Drawing.Point(10, 90);
             this.nameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.nameLabel.Name = "nameLabel";
-            this.nameLabel.Size = new System.Drawing.Size(36, 17);
+            this.nameLabel.Size = new System.Drawing.Size(44, 21);
             this.nameLabel.TabIndex = 3;
             this.nameLabel.Text = "Имя";
             // 
@@ -111,7 +111,7 @@
             this.patronymicLabel.Location = new System.Drawing.Point(10, 130);
             this.patronymicLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.patronymicLabel.Name = "patronymicLabel";
-            this.patronymicLabel.Size = new System.Drawing.Size(69, 17);
+            this.patronymicLabel.Size = new System.Drawing.Size(86, 21);
             this.patronymicLabel.TabIndex = 4;
             this.patronymicLabel.Text = "Отчество";
             // 
@@ -122,7 +122,7 @@
             this.dateOfBirthLabel.Location = new System.Drawing.Point(10, 170);
             this.dateOfBirthLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.dateOfBirthLabel.Name = "dateOfBirthLabel";
-            this.dateOfBirthLabel.Size = new System.Drawing.Size(103, 17);
+            this.dateOfBirthLabel.Size = new System.Drawing.Size(132, 21);
             this.dateOfBirthLabel.TabIndex = 5;
             this.dateOfBirthLabel.Text = "Дата рождения";
             // 
@@ -130,28 +130,28 @@
             // 
             this.SurnameTextBox.Location = new System.Drawing.Point(115, 50);
             this.SurnameTextBox.Name = "SurnameTextBox";
-            this.SurnameTextBox.Size = new System.Drawing.Size(100, 25);
+            this.SurnameTextBox.Size = new System.Drawing.Size(100, 29);
             this.SurnameTextBox.TabIndex = 10;
             // 
             // NameTextBox
             // 
             this.NameTextBox.Location = new System.Drawing.Point(115, 90);
             this.NameTextBox.Name = "NameTextBox";
-            this.NameTextBox.Size = new System.Drawing.Size(100, 25);
+            this.NameTextBox.Size = new System.Drawing.Size(100, 29);
             this.NameTextBox.TabIndex = 11;
             // 
             // patronymicTextBox
             // 
             this.patronymicTextBox.Location = new System.Drawing.Point(115, 130);
             this.patronymicTextBox.Name = "patronymicTextBox";
-            this.patronymicTextBox.Size = new System.Drawing.Size(100, 25);
+            this.patronymicTextBox.Size = new System.Drawing.Size(100, 29);
             this.patronymicTextBox.TabIndex = 12;
             // 
             // dateOfBirthTextBox
             // 
             this.dateOfBirthTextBox.Location = new System.Drawing.Point(115, 170);
             this.dateOfBirthTextBox.Name = "dateOfBirthTextBox";
-            this.dateOfBirthTextBox.Size = new System.Drawing.Size(100, 25);
+            this.dateOfBirthTextBox.Size = new System.Drawing.Size(100, 29);
             this.dateOfBirthTextBox.TabIndex = 13;
             // 
             // genderLabel
@@ -159,7 +159,7 @@
             this.genderLabel.AutoSize = true;
             this.genderLabel.Location = new System.Drawing.Point(10, 210);
             this.genderLabel.Name = "genderLabel";
-            this.genderLabel.Size = new System.Drawing.Size(33, 17);
+            this.genderLabel.Size = new System.Drawing.Size(42, 21);
             this.genderLabel.TabIndex = 14;
             this.genderLabel.Text = "Пол";
             // 
@@ -168,7 +168,7 @@
             this.passportLabel.AutoSize = true;
             this.passportLabel.Location = new System.Drawing.Point(10, 250);
             this.passportLabel.Name = "passportLabel";
-            this.passportLabel.Size = new System.Drawing.Size(61, 17);
+            this.passportLabel.Size = new System.Drawing.Size(78, 21);
             this.passportLabel.TabIndex = 15;
             this.passportLabel.Text = "Паспорт";
             // 
@@ -177,28 +177,30 @@
             this.manRadioButton.AutoSize = true;
             this.manRadioButton.Location = new System.Drawing.Point(115, 210);
             this.manRadioButton.Name = "manRadioButton";
-            this.manRadioButton.Size = new System.Drawing.Size(39, 21);
+            this.manRadioButton.Size = new System.Drawing.Size(47, 25);
             this.manRadioButton.TabIndex = 18;
             this.manRadioButton.TabStop = true;
             this.manRadioButton.Text = "М";
             this.manRadioButton.UseVisualStyleBackColor = true;
+            this.manRadioButton.CheckedChanged += new System.EventHandler(this.manRadioButton_CheckedChanged);
             // 
             // womanRadioButton
             // 
             this.womanRadioButton.AutoSize = true;
             this.womanRadioButton.Location = new System.Drawing.Point(175, 210);
             this.womanRadioButton.Name = "womanRadioButton";
-            this.womanRadioButton.Size = new System.Drawing.Size(39, 21);
+            this.womanRadioButton.Size = new System.Drawing.Size(48, 25);
             this.womanRadioButton.TabIndex = 19;
             this.womanRadioButton.TabStop = true;
             this.womanRadioButton.Text = "Ж";
             this.womanRadioButton.UseVisualStyleBackColor = true;
+            this.womanRadioButton.CheckedChanged += new System.EventHandler(this.womanRadioButton_CheckedChanged);
             // 
             // passportTextBox1
             // 
             this.passportTextBox1.Location = new System.Drawing.Point(115, 250);
             this.passportTextBox1.Name = "passportTextBox1";
-            this.passportTextBox1.Size = new System.Drawing.Size(100, 25);
+            this.passportTextBox1.Size = new System.Drawing.Size(100, 29);
             this.passportTextBox1.TabIndex = 20;
             // 
             // addButton
@@ -209,13 +211,14 @@
             this.addButton.TabIndex = 21;
             this.addButton.Text = "Добавить";
             this.addButton.UseVisualStyleBackColor = true;
+            this.addButton.Click += new System.EventHandler(this.addButton_Click);
             // 
             // innLabel
             // 
             this.innLabel.AutoSize = true;
             this.innLabel.Location = new System.Drawing.Point(280, 10);
             this.innLabel.Name = "innLabel";
-            this.innLabel.Size = new System.Drawing.Size(41, 17);
+            this.innLabel.Size = new System.Drawing.Size(49, 21);
             this.innLabel.TabIndex = 22;
             this.innLabel.Text = "ИНН";
             // 
@@ -224,7 +227,7 @@
             this.snilsLabel.AutoSize = true;
             this.snilsLabel.Location = new System.Drawing.Point(280, 50);
             this.snilsLabel.Name = "snilsLabel";
-            this.snilsLabel.Size = new System.Drawing.Size(60, 17);
+            this.snilsLabel.Size = new System.Drawing.Size(75, 21);
             this.snilsLabel.TabIndex = 23;
             this.snilsLabel.Text = "СНИЛС";
             // 
@@ -233,7 +236,7 @@
             this.specializationLabel.AutoSize = true;
             this.specializationLabel.Location = new System.Drawing.Point(280, 90);
             this.specializationLabel.Name = "specializationLabel";
-            this.specializationLabel.Size = new System.Drawing.Size(101, 17);
+            this.specializationLabel.Size = new System.Drawing.Size(133, 21);
             this.specializationLabel.TabIndex = 24;
             this.specializationLabel.Text = "Специализация";
             // 
@@ -242,7 +245,7 @@
             this.categoryLabel.AutoSize = true;
             this.categoryLabel.Location = new System.Drawing.Point(280, 130);
             this.categoryLabel.Name = "categoryLabel";
-            this.categoryLabel.Size = new System.Drawing.Size(73, 17);
+            this.categoryLabel.Size = new System.Drawing.Size(94, 21);
             this.categoryLabel.TabIndex = 25;
             this.categoryLabel.Text = "Категория";
             // 
@@ -250,28 +253,28 @@
             // 
             this.innTextBox.Location = new System.Drawing.Point(395, 10);
             this.innTextBox.Name = "innTextBox";
-            this.innTextBox.Size = new System.Drawing.Size(100, 25);
+            this.innTextBox.Size = new System.Drawing.Size(100, 29);
             this.innTextBox.TabIndex = 26;
             // 
             // snilsTextBox
             // 
             this.snilsTextBox.Location = new System.Drawing.Point(395, 50);
             this.snilsTextBox.Name = "snilsTextBox";
-            this.snilsTextBox.Size = new System.Drawing.Size(100, 25);
+            this.snilsTextBox.Size = new System.Drawing.Size(100, 29);
             this.snilsTextBox.TabIndex = 27;
             // 
             // specializationTextBox
             // 
             this.specializationTextBox.Location = new System.Drawing.Point(395, 90);
             this.specializationTextBox.Name = "specializationTextBox";
-            this.specializationTextBox.Size = new System.Drawing.Size(100, 25);
+            this.specializationTextBox.Size = new System.Drawing.Size(100, 29);
             this.specializationTextBox.TabIndex = 28;
             // 
             // categoryTextBox
             // 
             this.categoryTextBox.Location = new System.Drawing.Point(395, 130);
             this.categoryTextBox.Name = "categoryTextBox";
-            this.categoryTextBox.Size = new System.Drawing.Size(100, 25);
+            this.categoryTextBox.Size = new System.Drawing.Size(100, 29);
             this.categoryTextBox.TabIndex = 29;
             // 
             // phoneLabel
@@ -279,7 +282,7 @@
             this.phoneLabel.AutoSize = true;
             this.phoneLabel.Location = new System.Drawing.Point(280, 170);
             this.phoneLabel.Name = "phoneLabel";
-            this.phoneLabel.Size = new System.Drawing.Size(60, 17);
+            this.phoneLabel.Size = new System.Drawing.Size(78, 21);
             this.phoneLabel.TabIndex = 30;
             this.phoneLabel.Text = "Телефон";
             // 
@@ -287,7 +290,7 @@
             // 
             this.phoneTextBox.Location = new System.Drawing.Point(395, 170);
             this.phoneTextBox.Name = "phoneTextBox";
-            this.phoneTextBox.Size = new System.Drawing.Size(100, 25);
+            this.phoneTextBox.Size = new System.Drawing.Size(100, 29);
             this.phoneTextBox.TabIndex = 31;
             // 
             // policyLabel
@@ -295,7 +298,7 @@
             this.policyLabel.AutoSize = true;
             this.policyLabel.Location = new System.Drawing.Point(280, 10);
             this.policyLabel.Name = "policyLabel";
-            this.policyLabel.Size = new System.Drawing.Size(47, 17);
+            this.policyLabel.Size = new System.Drawing.Size(61, 21);
             this.policyLabel.TabIndex = 32;
             this.policyLabel.Text = "Полис";
             this.policyLabel.Visible = false;
@@ -304,13 +307,13 @@
             // 
             this.policyTextBox.Location = new System.Drawing.Point(395, 10);
             this.policyTextBox.Name = "policyTextBox";
-            this.policyTextBox.Size = new System.Drawing.Size(100, 25);
+            this.policyTextBox.Size = new System.Drawing.Size(100, 29);
             this.policyTextBox.TabIndex = 33;
             this.policyTextBox.Visible = false;
             // 
             // registration
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(521, 308);
             this.Controls.Add(this.policyTextBox);

@@ -67,7 +67,7 @@ namespace MedicalClinic
                     doctors.Add(new Doctor(reader.GetInt32(0), reader.GetString(1), reader.GetString(2),
                                            reader.GetString(3), reader.GetString(4), reader.GetString(5), 
                                            reader.GetChar(6), reader.GetDateTime(7), reader.GetString(8), 
-                                           reader.GetString(9), reader.GetString(10)));
+                                           reader.GetString(9), reader.GetString(10), reader.GetString(11)));
                 }
                 catch (DoctorInvalidCategoryException) 
                 {
@@ -122,13 +122,9 @@ namespace MedicalClinic
                     doctors.Add(new Doctor(reader.GetInt32(0), reader.GetString(1), reader.GetString(2),
                                            reader.GetString(3), reader.GetString(4), reader.GetString(5), 
                                            reader.GetChar(6), reader.GetDateTime(7), reader.GetString(8), 
-                                           reader.GetString(9), reader.GetString(10)));
+                                           reader.GetString(9), reader.GetString(10), reader.GetString(11)));
                 }
-                catch (PatientInvalidPolisException)
-                {
-                    break;
-                }
-                catch (PatientInvalidSnilsException)
+                catch (DoctorInvalidInputDataException)
                 {
                     break;
                 }
@@ -158,15 +154,14 @@ namespace MedicalClinic
                 try
                 {
                     patients.Add(new Patient(reader.GetInt32(0), reader.GetString(1), reader.GetString(2),
-                                             reader.GetString(3), reader.GetChar(4), reader.GetDateTime(5), 
-                                             reader.GetString(6), reader.GetString(7), reader.GetString(8), 
-                                             reader.GetString(9), reader.GetString(10)));
+                                             reader.GetString(3), reader.GetChar(4), reader.GetDateTime(5),
+                                             reader.GetString(6), reader.GetString(7), reader.GetString(8)));
                 }
                 catch (PatientInvalidPolisException)
                 {
                     break;
                 }
-                catch (PatientInvalidSnilsException)
+                catch (PersonInvalidPassportException)
                 {
                     break;
                 }
@@ -187,7 +182,7 @@ namespace MedicalClinic
 
             NpgsqlCommand command = new NpgsqlCommand("insert into patient values (default, :first_name, :middle_name," + 
                                                                                  ":last_name, :gender, :date_of_birth," +
-                                                                                 ":passport, :inn, :polis, :snils)", 
+                                                                                 ":passport, :polis, :telephoneNumber)", 
                                                      connection);
 
             command.Parameters.Add("first_name", NpgsqlDbType.Varchar);
@@ -196,9 +191,8 @@ namespace MedicalClinic
             command.Parameters.Add("gender", NpgsqlDbType.Char);
             command.Parameters.Add("date_of_birth", NpgsqlDbType.Date);
             command.Parameters.Add("passport", NpgsqlDbType.Varchar);
-            command.Parameters.Add("inn", NpgsqlDbType.Varchar);
             command.Parameters.Add("polis", NpgsqlDbType.Varchar);
-            command.Parameters.Add("snils", NpgsqlDbType.Varchar);
+            command.Parameters.Add("telephoneNumber", NpgsqlDbType.Varchar);
 
             command.Prepare();
 
@@ -208,9 +202,8 @@ namespace MedicalClinic
             command.Parameters[3].Value = patient.Gender;
             command.Parameters[4].Value = patient.DateOfBirth;
             command.Parameters[5].Value = patient.Passport;
-            command.Parameters[6].Value = patient.INN;
-            command.Parameters[7].Value = patient.Polis;
-            command.Parameters[8].Value = patient.Snils;
+            command.Parameters[6].Value = patient.Polis;
+            command.Parameters[7].Value = patient.TelephoneNumber;
 
             int changedOrAddedRows = command.ExecuteNonQuery();
 

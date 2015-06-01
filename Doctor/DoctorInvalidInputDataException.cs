@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MedicalClinic
 {
-    class PersonInvalidInnException : Exception
+    class DoctorInvalidInputDataException : Exception
     {
     }
 }

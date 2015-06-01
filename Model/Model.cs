@@ -124,17 +124,27 @@ namespace MedicalClinic
         }
 
 
-        
-        public static void addPatient(Patient patient)
+
+        public static void addPatient(string firstName, string middleName, string lastName, char gender,
+                                      string dateOfBirth, string passport, string polis,
+                                      string telephoneNumber)
         {
-            DataManipulator.insertIntoPatient(patient);
+            DataManipulator.insertIntoPatient(new Patient(1, firstName, middleName, lastName, gender, 
+                                                          Convert.ToDateTime(dateOfBirth), passport,
+                                                          polis, telephoneNumber));
         }
 
 
 
-        public static void addDoctor(Doctor doctor)
+        public static void addDoctor(string firstName, string middleName, string lastName, char gender,
+                                     string dateOfBirth, string passport, string inn,
+                                     string snils, string specialization, string category,
+                                     string telephoneNumber)
         {
-            DataManipulator.insertIntoDoctor(doctor);
+
+            DataManipulator.insertIntoDoctor(new Doctor(1, firstName, middleName, lastName, specialization,
+                                                        category, gender, Convert.ToDateTime(dateOfBirth),
+                                                        passport,inn, snils, telephoneNumber));
         }
 
 

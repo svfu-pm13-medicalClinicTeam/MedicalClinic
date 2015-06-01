@@ -9,18 +9,15 @@ namespace MedicalClinic
     class Patient : Person
     {
         string polis;
-        string snils;
 
         public Patient()
         {
             polis = "1111111211111111";
-            snils = "11111113111";
         }
 
         public Patient(int _id, string _firstName, string _middleName, string _lastName, char _gender,
-                      DateTime _dateOfBirth, string _passport, string _inn, string _polis, string _snils, 
-                      string _telephoneNumber) :
-        base(_id, _firstName, _middleName, _lastName, _gender, _dateOfBirth, _passport, _inn, _telephoneNumber)
+                      DateTime _dateOfBirth, string _passport, string _polis, string _telephoneNumber) :
+        base(_id, _firstName, _middleName, _lastName, _gender, _dateOfBirth, _passport, _telephoneNumber)
         {
             if (isValidPolis(_polis))
             {
@@ -29,15 +26,6 @@ namespace MedicalClinic
             else
             {
                 throw new PatientInvalidPolisException();
-            }
-
-            if (isValidSnils(_snils))
-            {
-                snils = _snils;
-            }
-            else
-            {
-                throw new PatientInvalidSnilsException();
             }
         }
 
@@ -60,37 +48,11 @@ namespace MedicalClinic
             }
         }
 
-        public string Snils
-        {
-            set
-            {
-                if (isValidSnils(value))
-                {
-                    snils = value;
-                }
-                else
-                {
-                    throw new PatientInvalidSnilsException();
-                }
-            }
-            get
-            {
-                return snils;
-            }
-        }
-
         private bool isValidPolis(string _polis)
         {
             int polisLength = 16;
 
             return (_polis.Length == polisLength);
-        }
-
-        private bool isValidSnils(string _snils)
-        {
-            int snilsLength = 11;
-
-            return (_snils.Length == snilsLength);
         }
     }
 }

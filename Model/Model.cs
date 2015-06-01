@@ -154,7 +154,7 @@ namespace MedicalClinic
         public static void changeAdminPassword(string oldPassword, string newPassword)
         {
             if (Model.userExists("admin", oldPassword))
-                DataManipulator.changeAdminPasswordInSoftUsers(GetHashString(GetHashString(newPassword));
+                DataManipulator.changeAdminPasswordInSoftUsers(GetHashString(GetHashString(newPassword)));
         }
 
 

@@ -67,7 +67,7 @@ namespace MedicalClinic
                     doctors.Add(new Doctor(reader.GetInt32(0), reader.GetString(1), reader.GetString(2),
                                            reader.GetString(3), reader.GetString(4), reader.GetString(5), 
                                            reader.GetChar(6), reader.GetDateTime(7), reader.GetString(8), 
-                                           reader.GetString(9)));
+                                           reader.GetString(9), reader.GetString(10)));
                 }
                 catch (DoctorInvalidCategoryException) 
                 {
@@ -122,7 +122,7 @@ namespace MedicalClinic
                     doctors.Add(new Doctor(reader.GetInt32(0), reader.GetString(1), reader.GetString(2),
                                            reader.GetString(3), reader.GetString(4), reader.GetString(5), 
                                            reader.GetChar(6), reader.GetDateTime(7), reader.GetString(8), 
-                                           reader.GetString(9)));
+                                           reader.GetString(9), reader.GetString(10)));
                 }
                 catch (PatientInvalidPolisException)
                 {
@@ -160,7 +160,7 @@ namespace MedicalClinic
                     patients.Add(new Patient(reader.GetInt32(0), reader.GetString(1), reader.GetString(2),
                                              reader.GetString(3), reader.GetChar(4), reader.GetDateTime(5), 
                                              reader.GetString(6), reader.GetString(7), reader.GetString(8), 
-                                             reader.GetString(9)));
+                                             reader.GetString(9), reader.GetString(10)));
                 }
                 catch (PatientInvalidPolisException)
                 {
@@ -281,8 +281,8 @@ namespace MedicalClinic
                 {
                     schedule.Add(new Schedule(reader.GetInt32(0), reader.GetInt32(1), reader.GetDateTime(2),
                                               new TimeSpan(reader.GetTime(3).Hours, reader.GetTime(3).Minutes, 
-                                                           reader.GetTime(3).Seconds),
-                                              reader.GetInt32(4), reader.GetBoolean(5)));
+                                                           reader.GetTime(3).Seconds), reader.GetInt32(4), 
+                                                           reader.GetInt32(5), reader.GetBoolean(6)));
                 }
                 catch (ScheduleInvalidIdException)
                 {

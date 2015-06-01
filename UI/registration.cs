@@ -15,12 +15,12 @@ namespace MedicalClinic
         {
             InitializeComponent();
             doctorOrPatientComboBox.SelectedIndex = 0;
-            if (doctorOrPatientComboBox.TabIndex == 0)
+            if (doctorOrPatientComboBox.SelectedItem == "Доктор")
             {
                 policyLabel.Visible = false;
                 policyTextBox.Visible = false;
-                phoneLabel.Visible = false;
-                phoneTextBox.Visible = false;
+                snilsLabel.Visible = true;
+                snilsTextBox.Visible = true;
                 innLabel.Visible = true;
                 innTextBox.Visible = true;
                 specializationLabel.Visible = true;
@@ -32,8 +32,8 @@ namespace MedicalClinic
             {
                 policyLabel.Visible = true;
                 policyTextBox.Visible = true;
-                phoneLabel.Visible = true;
-                phoneTextBox.Visible = true;
+                snilsLabel.Visible = false;
+                snilsTextBox.Visible = false;
                 innLabel.Visible = false;
                 innTextBox.Visible = false;
                 specializationLabel.Visible = false;
@@ -41,7 +41,36 @@ namespace MedicalClinic
                 categoryLabel.Visible = false;
                 categoryTextBox.Visible = false;
             }
+        }
 
+        private void addButton_Click(object sender, EventArgs e)
+        {
+            if (doctorOrPatientComboBox.SelectedItem == "Доктор")
+            {
+                policyLabel.Visible = false;
+                policyTextBox.Visible = false;
+                snilsLabel.Visible = true;
+                snilsTextBox.Visible = true;
+                innLabel.Visible = true;
+                innTextBox.Visible = true;
+                specializationLabel.Visible = true;
+                specializationTextBox.Visible = true;
+                categoryLabel.Visible = true;
+                categoryTextBox.Visible = true;
+            }
+            else
+            {
+                policyLabel.Visible = true;
+                policyTextBox.Visible = true;
+                snilsLabel.Visible = false;
+                snilsTextBox.Visible = false;
+                innLabel.Visible = false;
+                innTextBox.Visible = false;
+                specializationLabel.Visible = false;
+                specializationTextBox.Visible = false;
+                categoryLabel.Visible = false;
+                categoryTextBox.Visible = false;
+            }
         }
     }
 }

@@ -202,17 +202,18 @@
             // 
             // addButton
             // 
-            this.addButton.Location = new System.Drawing.Point(286, 305);
+            this.addButton.Location = new System.Drawing.Point(365, 255);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(100, 35);
             this.addButton.TabIndex = 21;
             this.addButton.Text = "Добавить";
             this.addButton.UseVisualStyleBackColor = true;
+            this.addButton.Click += new System.EventHandler(this.addButton_Click);
             // 
             // innLabel
             // 
             this.innLabel.AutoSize = true;
-            this.innLabel.Location = new System.Drawing.Point(313, 15);
+            this.innLabel.Location = new System.Drawing.Point(287, 18);
             this.innLabel.Name = "innLabel";
             this.innLabel.Size = new System.Drawing.Size(41, 17);
             this.innLabel.TabIndex = 22;
@@ -221,7 +222,7 @@
             // snilsLabel
             // 
             this.snilsLabel.AutoSize = true;
-            this.snilsLabel.Location = new System.Drawing.Point(313, 59);
+            this.snilsLabel.Location = new System.Drawing.Point(287, 62);
             this.snilsLabel.Name = "snilsLabel";
             this.snilsLabel.Size = new System.Drawing.Size(60, 17);
             this.snilsLabel.TabIndex = 23;
@@ -230,7 +231,7 @@
             // specializationLabel
             // 
             this.specializationLabel.AutoSize = true;
-            this.specializationLabel.Location = new System.Drawing.Point(313, 98);
+            this.specializationLabel.Location = new System.Drawing.Point(287, 101);
             this.specializationLabel.Name = "specializationLabel";
             this.specializationLabel.Size = new System.Drawing.Size(101, 17);
             this.specializationLabel.TabIndex = 24;
@@ -239,7 +240,7 @@
             // categoryLabel
             // 
             this.categoryLabel.AutoSize = true;
-            this.categoryLabel.Location = new System.Drawing.Point(313, 146);
+            this.categoryLabel.Location = new System.Drawing.Point(287, 149);
             this.categoryLabel.Name = "categoryLabel";
             this.categoryLabel.Size = new System.Drawing.Size(73, 17);
             this.categoryLabel.TabIndex = 25;
@@ -247,28 +248,28 @@
             // 
             // innTextBox
             // 
-            this.innTextBox.Location = new System.Drawing.Point(450, 9);
+            this.innTextBox.Location = new System.Drawing.Point(424, 18);
             this.innTextBox.Name = "innTextBox";
             this.innTextBox.Size = new System.Drawing.Size(100, 25);
             this.innTextBox.TabIndex = 26;
             // 
             // snilsTextBox
             // 
-            this.snilsTextBox.Location = new System.Drawing.Point(450, 51);
+            this.snilsTextBox.Location = new System.Drawing.Point(424, 62);
             this.snilsTextBox.Name = "snilsTextBox";
             this.snilsTextBox.Size = new System.Drawing.Size(100, 25);
             this.snilsTextBox.TabIndex = 27;
             // 
             // specializationTextBox
             // 
-            this.specializationTextBox.Location = new System.Drawing.Point(450, 90);
+            this.specializationTextBox.Location = new System.Drawing.Point(424, 101);
             this.specializationTextBox.Name = "specializationTextBox";
             this.specializationTextBox.Size = new System.Drawing.Size(100, 25);
             this.specializationTextBox.TabIndex = 28;
             // 
             // categoryTextBox
             // 
-            this.categoryTextBox.Location = new System.Drawing.Point(450, 138);
+            this.categoryTextBox.Location = new System.Drawing.Point(424, 149);
             this.categoryTextBox.Name = "categoryTextBox";
             this.categoryTextBox.Size = new System.Drawing.Size(100, 25);
             this.categoryTextBox.TabIndex = 29;
@@ -276,7 +277,7 @@
             // phoneLabel
             // 
             this.phoneLabel.AutoSize = true;
-            this.phoneLabel.Location = new System.Drawing.Point(313, 187);
+            this.phoneLabel.Location = new System.Drawing.Point(287, 187);
             this.phoneLabel.Name = "phoneLabel";
             this.phoneLabel.Size = new System.Drawing.Size(60, 17);
             this.phoneLabel.TabIndex = 30;
@@ -284,7 +285,7 @@
             // 
             // phoneTextBox
             // 
-            this.phoneTextBox.Location = new System.Drawing.Point(450, 187);
+            this.phoneTextBox.Location = new System.Drawing.Point(424, 190);
             this.phoneTextBox.Name = "phoneTextBox";
             this.phoneTextBox.Size = new System.Drawing.Size(100, 25);
             this.phoneTextBox.TabIndex = 31;
@@ -292,24 +293,26 @@
             // policyLabel
             // 
             this.policyLabel.AutoSize = true;
-            this.policyLabel.Location = new System.Drawing.Point(313, 12);
+            this.policyLabel.Location = new System.Drawing.Point(287, 15);
             this.policyLabel.Name = "policyLabel";
             this.policyLabel.Size = new System.Drawing.Size(47, 17);
             this.policyLabel.TabIndex = 32;
             this.policyLabel.Text = "Полис";
+            this.policyLabel.Visible = false;
             // 
             // policyTextBox
             // 
-            this.policyTextBox.Location = new System.Drawing.Point(450, 9);
+            this.policyTextBox.Location = new System.Drawing.Point(424, 18);
             this.policyTextBox.Name = "policyTextBox";
             this.policyTextBox.Size = new System.Drawing.Size(100, 25);
             this.policyTextBox.TabIndex = 33;
+            this.policyTextBox.Visible = false;
             // 
             // registration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(597, 359);
+            this.ClientSize = new System.Drawing.Size(597, 328);
             this.Controls.Add(this.policyTextBox);
             this.Controls.Add(this.policyLabel);
             this.Controls.Add(this.phoneTextBox);

@@ -181,19 +181,20 @@ namespace MedicalClinic
                 doctorQuery = "select * from doctors where specialization_id = '" + specialization + "' ";
             }
 
-            scheduleQuery = " where date_of_receipt >= '" + fromDate + "' ";
+            scheduleQuery = " where time_of_receipt::date >= '" + fromDate + "' ";
 
             if (toDate != "")
             {
-                scheduleQuery += " and date_of_receipt <= '" + toDate + "' ";
+                scheduleQuery += " and time_of_receipt::date <= '" + toDate + "' ";
             }
 
             scheduleQuery += " and busy = " + "'" + busy + "' ";
 
             if (doctorQuery != "")
             {
-                query += "select schedule.id, doctor.first_name, doctor.middle_name, doctor.last_name, schedule.date_of_receipt," +
-                         "schedule.time_of_receipt, schedule.cabinet, schedule.patient_polis, schedule.busy from " +
+                query += "select schedule.id, needed_doctor.first_name, needed_doctor.middle_name,"+ 
+                         "needed_doctor.last_name, schedule.time_of_receipt," +
+                         "schedule.cabinet_id, schedule.patient_id, schedule.busy from " +
                          "schedule inner join (" + doctorQuery + ") as needed_doctor on " +
                          "schedule.doctor_id = needed_doctor.id " + scheduleQuery;
             }
@@ -202,7 +203,7 @@ namespace MedicalClinic
                 query += " select * from schedule " + scheduleQuery;
             }
 
-            DataManipulator.getData(bindingSource1, scheduleDataGridView, "select * from schedule");//query);
+            DataManipulator.getData(bindingSource1, scheduleDataGridView, query);
         }
 
     }

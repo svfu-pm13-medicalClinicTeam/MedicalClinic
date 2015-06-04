@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Security.Cryptography;
+using System.Windows.Forms;
+using MedicalClinicWraps;
 
 namespace MedicalClinic
 {
@@ -32,47 +34,33 @@ namespace MedicalClinic
             return result.ToString();
         }
 
-        public static List<Schedule> getSchedule(string specialization, string category, string fromDate, string toDate,
-                                              string fromTime, string toTime, string busy = "'f'")
+
+
+        public static List<Schedule> getSchedule(string specialization, string fromDate, string toDate,
+                                                 string busy = "'f'")
         {
             string query = "";
             string scheduleQuery = "";
             string doctorQuery = "";
 
-            if (specialization != null)
+            if (specialization != "")
             {
-                doctorQuery = "select * from doctor where specialization = '"+specialization +"' ";
+                doctorQuery = "select * from doctors where specialization_id = '"+specialization +"' ";
             }
-
-            if (category != null && specialization != null)
-            {
-                doctorQuery += " and category = '"+category+"' ";
-            }
-            else if (category != null && specialization == null)
-            {
-                doctorQuery = "select * from doctor where category = '"+category+"' ";
-            } 
 
             scheduleQuery = " where date_of_receipt >= '"+fromDate+"' ";
 
-            if (toDate != null)
+            if (toDate != "")
             {
                 scheduleQuery += " and date_of_receipt <= '"+toDate+"' ";
             }
 
-            scheduleQuery += " and time_of_receipt >= '"+fromTime+"' ";
-
-            if (toTime != null)
-            {
-                scheduleQuery += " and time_of_receipt <= '"+toTime+"' ";
-            }
-
             scheduleQuery += " and busy = " + "'" + busy + "' ";
-
+           
             if (doctorQuery != "")
             {
                 query += "select schedule.id, schedule.doctor_id, schedule.date_of_receipt," +
-                         "schedule.time_of_receipt, schedule.patient_id, schedule.cabinet, schedule.busy from " +
+                         "schedule.time_of_receipt, schedule.cabinet, schedule.busy from " +
                          "schedule inner join (" + doctorQuery + ") as needed_doctor on " +
                          "schedule.doctor_id = needed_doctor.id " + scheduleQuery;
             }
@@ -96,12 +84,12 @@ namespace MedicalClinic
         public static List<Doctor> getDoctors(string specialization, string category, string firstName, 
                                               string middleName, string lastName)
         {
-            string query = "select * from doctor ";
+            string query = "select * from doctors ";
             string condition = " where ";
 
             if (specialization != null)
             {
-                condition += "specialization = " + "'" + specialization + "' ";
+                condition += "specialization_id = " + "'" + specialization + "' ";
                 if (category != null)
                 {
                     condition += " and ";
@@ -136,13 +124,13 @@ namespace MedicalClinic
 
 
 
-        public static void addDoctor(string firstName, string middleName, string lastName, char gender,
-                                     string dateOfBirth, string passport, string inn,
-                                     string snils, string specialization, string category,
-                                     string telephoneNumber)
+        public static void addDoctor(string firstName, string middleName, string lastName,
+                                     int specialization, char category, char gender, string dateOfBirth,
+                                     string passport, string inn,  string snils, string telephoneNumber)
         {
+            int id = DataManipulator.getLastIdFromTable("doctors");
 
-            DataManipulator.insertIntoDoctor(new Doctor(1, firstName, middleName, lastName, specialization,
+            DataManipulator.insertIntoDoctor(new Doctor(id, firstName, middleName, lastName, specialization,
                                                         category, gender, Convert.ToDateTime(dateOfBirth),
                                                         passport,inn, snils, telephoneNumber));
         }
@@ -151,8 +139,9 @@ namespace MedicalClinic
             
         public static void addUser(string login, string password)
         {
+            int id = DataManipulator.getLastIdFromTable("soft_users");
             string hpwd = GetHashString(GetHashString(password));
-            DataManipulator.insertIntoSoftUsers(new SoftUser(1, login, hpwd));
+            DataManipulator.insertIntoSoftUsers(new SoftUser(id, login, hpwd));
         }
 
 
@@ -169,13 +158,52 @@ namespace MedicalClinic
         }
 
 
-        public static Patient getPatient(string polis)
+        public static Patient getPatient(string policy)
         {
-            string condition = "WHERE polis = '" + polis + "'";
+            string condition = "WHERE policy = '" + policy + "'";
 
             List<Patient> listPatient = DataManipulator.getPatientByCondition(condition);
 
             return listPatient[0];
         }
+
+
+
+        public static void getData(BindingSource bindingSource1, DataGridView scheduleDataGridView, string specialization,
+                          string fromDate, string toDate, string busy)
+        {
+            string doctorQuery = "";
+            string scheduleQuery = "";
+            string query = "";
+
+            if (specialization != "")
+            {
+                doctorQuery = "select * from doctors where specialization_id = '" + specialization + "' ";
+            }
+
+            scheduleQuery = " where date_of_receipt >= '" + fromDate + "' ";
+
+            if (toDate != "")
+            {
+                scheduleQuery += " and date_of_receipt <= '" + toDate + "' ";
+            }
+
+            scheduleQuery += " and busy = " + "'" + busy + "' ";
+
+            if (doctorQuery != "")
+            {
+                query += "select schedule.id, doctor.first_name, doctor.middle_name, doctor.last_name, schedule.date_of_receipt," +
+                         "schedule.time_of_receipt, schedule.cabinet, schedule.patient_polis, schedule.busy from " +
+                         "schedule inner join (" + doctorQuery + ") as needed_doctor on " +
+                         "schedule.doctor_id = needed_doctor.id " + scheduleQuery;
+            }
+            else
+            {
+                query += " select * from schedule " + scheduleQuery;
+            }
+
+            DataManipulator.getData(bindingSource1, scheduleDataGridView, "select * from schedule");//query);
+        }
+
     }
 }

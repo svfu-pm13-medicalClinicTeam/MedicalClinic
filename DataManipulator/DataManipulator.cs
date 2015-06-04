@@ -1,22 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 using Npgsql;
 using NpgsqlTypes;
+using MedicalClinicWraps;
 
 namespace MedicalClinic
 {
     static class DataManipulator
     {
-        static string stringOfConnection = "Server=localhost;Port=5432;User Id=postgres;" +
+        static string connectionString = "Server=localhost;Port=5432;User Id=postgres;" +
                                            "Password=;Database=MedicalClinic";
 
         public static SoftUser getUserByName(string login)
         {
             SoftUser user = null;
 
-            NpgsqlConnection connection = new NpgsqlConnection(stringOfConnection);
+            NpgsqlConnection connection = new NpgsqlConnection(connectionString);
 
             connection.Open();
 
@@ -52,9 +57,9 @@ namespace MedicalClinic
         {
             List<Doctor> doctors = new List<Doctor>();
 
-            NpgsqlConnection connection = new NpgsqlConnection(stringOfConnection);
+            NpgsqlConnection connection = new NpgsqlConnection(connectionString);
 
-            NpgsqlCommand command = new NpgsqlCommand("select * from doctor " + condition, connection);
+            NpgsqlCommand command = new NpgsqlCommand("select * from doctors " + condition, connection);
 
             connection.Open();
 
@@ -65,9 +70,9 @@ namespace MedicalClinic
                 try
                 {
                     doctors.Add(new Doctor(reader.GetInt32(0), reader.GetString(1), reader.GetString(2),
-                                           reader.GetString(3), reader.GetString(4), reader.GetString(5), 
-                                           reader.GetChar(6), reader.GetDateTime(7), reader.GetString(8), 
-                                           reader.GetString(9), reader.GetString(10), reader.GetString(11)));
+                                           reader.GetString(3), reader.GetInt32(4), reader.GetChar(5), 
+                                           reader.GetChar(6), reader.GetDateTime(7), reader.GetString(8),
+                                           reader.GetString(9), reader.GetString(10), reader.GetString(9)));
                 }
                 catch (DoctorInvalidCategoryException) 
                 {
@@ -87,7 +92,7 @@ namespace MedicalClinic
         {
             List<Doctor> doctors = new List<Doctor>();
 
-            NpgsqlConnection connection = new NpgsqlConnection(stringOfConnection);
+            NpgsqlConnection connection = new NpgsqlConnection(connectionString);
 
             connection.Open();
 
@@ -120,9 +125,9 @@ namespace MedicalClinic
                 try
                 {
                     doctors.Add(new Doctor(reader.GetInt32(0), reader.GetString(1), reader.GetString(2),
-                                           reader.GetString(3), reader.GetString(4), reader.GetString(5), 
-                                           reader.GetChar(6), reader.GetDateTime(7), reader.GetString(8), 
-                                           reader.GetString(9), reader.GetString(10), reader.GetString(11)));
+                                           reader.GetString(3), reader.GetInt32(4), reader.GetChar(5),
+                                           reader.GetChar(6), reader.GetDateTime(7), reader.GetString(8),
+                                           reader.GetString(9), reader.GetString(10), reader.GetString(9)));
                 }
                 catch (DoctorInvalidInputDataException)
                 {
@@ -141,9 +146,9 @@ namespace MedicalClinic
         {
             List<Patient> patients = new List<Patient>();
 
-            NpgsqlConnection connection = new NpgsqlConnection(stringOfConnection);
+            NpgsqlConnection connection = new NpgsqlConnection(connectionString);
 
-            NpgsqlCommand command = new NpgsqlCommand("select * from patient " + condition, connection);
+            NpgsqlCommand command = new NpgsqlCommand("select * from patients " + condition, connection);
 
             connection.Open();
 
@@ -157,7 +162,7 @@ namespace MedicalClinic
                                              reader.GetString(3), reader.GetChar(4), reader.GetDateTime(5),
                                              reader.GetString(6), reader.GetString(7), reader.GetString(8)));
                 }
-                catch (PatientInvalidPolisException)
+                catch (PatientInvalidPolicyException)
                 {
                     break;
                 }
@@ -176,34 +181,36 @@ namespace MedicalClinic
 
         public static int insertIntoPatient(Patient patient)
         {
-            NpgsqlConnection connection = new NpgsqlConnection(stringOfConnection);
+            NpgsqlConnection connection = new NpgsqlConnection(connectionString);
 
             connection.Open();
 
-            NpgsqlCommand command = new NpgsqlCommand("insert into patient values (default, :first_name, :middle_name," + 
+            NpgsqlCommand command = new NpgsqlCommand("insert into patients values (:id, :first_name, :middle_name," + 
                                                                                  ":last_name, :gender, :date_of_birth," +
-                                                                                 ":passport, :polis, :telephoneNumber)", 
+                                                                                 ":passport, :policy, :telephoneNumber)", 
                                                      connection);
 
+            command.Parameters.Add("id", NpgsqlDbType.Integer);
             command.Parameters.Add("first_name", NpgsqlDbType.Varchar);
             command.Parameters.Add("middle_name", NpgsqlDbType.Varchar);
             command.Parameters.Add("last_name", NpgsqlDbType.Varchar);
             command.Parameters.Add("gender", NpgsqlDbType.Char);
             command.Parameters.Add("date_of_birth", NpgsqlDbType.Date);
             command.Parameters.Add("passport", NpgsqlDbType.Varchar);
-            command.Parameters.Add("polis", NpgsqlDbType.Varchar);
+            command.Parameters.Add("policy", NpgsqlDbType.Varchar);
             command.Parameters.Add("telephoneNumber", NpgsqlDbType.Varchar);
 
             command.Prepare();
 
-            command.Parameters[0].Value = patient.FirstName;
-            command.Parameters[1].Value = patient.MiddleName;
-            command.Parameters[2].Value = patient.LastName;
-            command.Parameters[3].Value = patient.Gender;
-            command.Parameters[4].Value = patient.DateOfBirth;
-            command.Parameters[5].Value = patient.Passport;
-            command.Parameters[6].Value = patient.Polis;
-            command.Parameters[7].Value = patient.TelephoneNumber;
+            command.Parameters[0].Value = patient.ID;
+            command.Parameters[1].Value = patient.FirstName;
+            command.Parameters[2].Value = patient.MiddleName;
+            command.Parameters[3].Value = patient.LastName;
+            command.Parameters[4].Value = patient.Gender;
+            command.Parameters[5].Value = patient.DateOfBirth;
+            command.Parameters[6].Value = patient.Passport;
+            command.Parameters[7].Value = patient.Policy;
+            command.Parameters[8].Value = patient.TelephoneNumber;
 
             int changedOrAddedRows = command.ExecuteNonQuery();
 
@@ -216,36 +223,43 @@ namespace MedicalClinic
 
         public static int insertIntoDoctor(Doctor doctor)
         {
-            NpgsqlConnection connection = new NpgsqlConnection(stringOfConnection);
+            NpgsqlConnection connection = new NpgsqlConnection(connectionString);
 
             connection.Open();
 
-            NpgsqlCommand command = new NpgsqlCommand("insert into doctor values (default, :first_name, :middle_name," +
+            NpgsqlCommand command = new NpgsqlCommand("insert into doctors values (:id, :first_name, :middle_name," +
                                                                                 ":last_name, :specialization, :category,"+
-                                                                                ":gender, :date_of_birth, :passport, :inn)", 
+                                                                                ":gender, :date_of_birth, :passport, :inn,"+
+                                                                                 ":snils, :telephone_number)", 
                                                        connection);
 
+            command.Parameters.Add(new NpgsqlParameter("id", NpgsqlDbType.Integer));
             command.Parameters.Add(new NpgsqlParameter("first_name", NpgsqlDbType.Varchar));
             command.Parameters.Add(new NpgsqlParameter("middle_name", NpgsqlDbType.Varchar));
             command.Parameters.Add(new NpgsqlParameter("last_name", NpgsqlDbType.Varchar));
-            command.Parameters.Add(new NpgsqlParameter("specialization", NpgsqlDbType.Varchar));
+            command.Parameters.Add(new NpgsqlParameter("specialization", NpgsqlDbType.Integer));
             command.Parameters.Add(new NpgsqlParameter("category", NpgsqlDbType.Varchar));
             command.Parameters.Add(new NpgsqlParameter("gender", NpgsqlDbType.Char));
             command.Parameters.Add(new NpgsqlParameter("date_of_birth", NpgsqlDbType.Date));
             command.Parameters.Add(new NpgsqlParameter("passport", NpgsqlDbType.Varchar));
             command.Parameters.Add(new NpgsqlParameter("inn", NpgsqlDbType.Varchar));
+            command.Parameters.Add(new NpgsqlParameter("snils", NpgsqlDbType.Varchar));
+            command.Parameters.Add(new NpgsqlParameter("telephone_number", NpgsqlDbType.Varchar));
 
             command.Prepare();
-            
-            command.Parameters[0].Value = doctor.FirstName;
-            command.Parameters[1].Value = doctor.MiddleName;
-            command.Parameters[2].Value = doctor.LastName;
-            command.Parameters[3].Value = doctor.Specialization;
-            command.Parameters[4].Value = doctor.Category;
-            command.Parameters[5].Value = doctor.Gender;
-            command.Parameters[6].Value = doctor.DateOfBirth;
-            command.Parameters[7].Value = doctor.Passport;
-            command.Parameters[8].Value = doctor.INN;
+
+            command.Parameters[0].Value = doctor.ID;
+            command.Parameters[1].Value = doctor.FirstName;
+            command.Parameters[2].Value = doctor.MiddleName;
+            command.Parameters[3].Value = doctor.LastName;
+            command.Parameters[4].Value = doctor.Specialization;
+            command.Parameters[5].Value = doctor.Category;
+            command.Parameters[6].Value = doctor.Gender;
+            command.Parameters[7].Value = doctor.DateOfBirth;
+            command.Parameters[8].Value = doctor.Passport;
+            command.Parameters[9].Value = doctor.INN;
+            command.Parameters[10].Value = doctor.Snils;
+            command.Parameters[11].Value = doctor.TelephoneNumber;
 
             int changedOrAddedRows = command.ExecuteNonQuery();
 
@@ -260,7 +274,7 @@ namespace MedicalClinic
         {
             List<Schedule> schedule = new List<Schedule>();
            
-            NpgsqlConnection connection = new NpgsqlConnection(stringOfConnection);
+            NpgsqlConnection connection = new NpgsqlConnection(connectionString);
             
             NpgsqlCommand command = new NpgsqlCommand(query, connection);
             
@@ -273,9 +287,7 @@ namespace MedicalClinic
                 try
                 {
                     schedule.Add(new Schedule(reader.GetInt32(0), reader.GetInt32(1), reader.GetDateTime(2),
-                                              new TimeSpan(reader.GetTime(3).Hours, reader.GetTime(3).Minutes, 
-                                                           reader.GetTime(3).Seconds), reader.GetInt32(4), 
-                                                           reader.GetInt32(5), reader.GetBoolean(6)));
+                                              reader.GetInt32(3), reader.GetInt32(4), reader.GetBoolean(5)));
                 }
                 catch (ScheduleInvalidIdException)
                 {
@@ -291,7 +303,7 @@ namespace MedicalClinic
 
         public static int insertIntoSoftUsers(SoftUser user)
         {
-            NpgsqlConnection connection = new NpgsqlConnection(stringOfConnection);
+            NpgsqlConnection connection = new NpgsqlConnection(connectionString);
 
             connection.Open();
 
@@ -316,30 +328,30 @@ namespace MedicalClinic
 
         public static int insertIntoSchedule(Schedule schedule)
         {
-            NpgsqlConnection connection = new NpgsqlConnection(stringOfConnection);
+            NpgsqlConnection connection = new NpgsqlConnection(connectionString);
 
             connection.Open();
 
-            NpgsqlCommand command = new NpgsqlCommand("insert into schedule values (default, :doctor_id," +
-                                                                                   ":date_of_receipt, :time_of_receipt,"+ 
+            NpgsqlCommand command = new NpgsqlCommand("insert into schedule values (:id, :doctor_id," +
+                                                                                   ":time_of_receipt, :cabinet_id"+ 
                                                                                    ":patient_id, :busy);", 
                                                       connection);
 
+            command.Parameters.Add("id", NpgsqlDbType.Integer);
             command.Parameters.Add("doctor_id", NpgsqlDbType.Integer);
-            command.Parameters.Add("date_of_receipt", NpgsqlDbType.Date);
             command.Parameters.Add("time_of_receipt", NpgsqlDbType.Time);
+            command.Parameters.Add("cabinet_id", NpgsqlDbType.Integer);
             command.Parameters.Add("patient_id", NpgsqlDbType.Integer);
             command.Parameters.Add("busy", NpgsqlDbType.Boolean);
 
             command.Prepare();
 
-            command.Parameters[0].Value = schedule.DoctorID;
-            command.Parameters[1].Value = schedule.DateOfReceipt;
-            command.Parameters[2].Value = new NpgsqlTime(schedule.TimeOfReceipt.Hours,
-                                                         schedule.TimeOfReceipt.Minutes,
-                                                         schedule.TimeOfReceipt.Seconds);
-            command.Parameters[3].Value = schedule.PatientID;
-            command.Parameters[4].Value = schedule.Busy;
+            command.Parameters[0].Value = schedule.ID;
+            command.Parameters[1].Value = schedule.DoctorID;
+            command.Parameters[2].Value = schedule.TimeOfReceipt;
+            command.Parameters[3].Value = schedule.CabinetId;
+            command.Parameters[4].Value = schedule.PatientID;
+            command.Parameters[5].Value = schedule.Busy;
 
             int changedOrAddedRows = command.ExecuteNonQuery();
 
@@ -352,7 +364,7 @@ namespace MedicalClinic
 
         public static int deleteRecordFromTable(string tableName, int id)
         {
-            NpgsqlConnection connection = new NpgsqlConnection(stringOfConnection);
+            NpgsqlConnection connection = new NpgsqlConnection(connectionString);
 
             connection.Open();
 
@@ -373,19 +385,19 @@ namespace MedicalClinic
 
 
 
-        public static int getPatientIdByPolis(int polis)
+        public static int getPatientIdByPolicy(int policy)
         {
-            NpgsqlConnection connection = new NpgsqlConnection(stringOfConnection);
+            NpgsqlConnection connection = new NpgsqlConnection(connectionString);
 
             connection.Open();
 
-            NpgsqlCommand command = new NpgsqlCommand("select id from patient where polis = :polis", connection);
+            NpgsqlCommand command = new NpgsqlCommand("select id from patients where policy = :policy", connection);
 
-            command.Parameters.Add("polis", NpgsqlDbType.Varchar);
+            command.Parameters.Add("policy", NpgsqlDbType.Varchar);
 
             command.Prepare();
 
-            command.Parameters[0].Value = polis;
+            command.Parameters[0].Value = policy;
 
             int id;
 
@@ -402,14 +414,14 @@ namespace MedicalClinic
         }
 
 
-
+/*
         public static int updateSchedule(int id, int polis, bool busy)
         {
-            NpgsqlConnection connection = new NpgsqlConnection(stringOfConnection);
+            NpgsqlConnection connection = new NpgsqlConnection(connectionString);
 
             connection.Open();
 
-            NpgsqlCommand command = new NpgsqlCommand("update schedule set polis = :polis, busy = :busy where " +
+            NpgsqlCommand command = new NpgsqlCommand("update schedule set policy = :policy, busy = :busy where " +
                                                       "id = :id);", connection);
 
             command.Parameters.Add("polis", NpgsqlDbType.Integer);
@@ -429,11 +441,11 @@ namespace MedicalClinic
             return changedOrAddedRows;
         }
 
-
+*/
 
         public static int deleteFromSoftUsers(string login)
         {
-            NpgsqlConnection connection = new NpgsqlConnection(stringOfConnection);
+            NpgsqlConnection connection = new NpgsqlConnection(connectionString);
 
             connection.Open();
 
@@ -456,7 +468,7 @@ namespace MedicalClinic
 
         public static int changeAdminPasswordInSoftUsers(string newPassword)
         {
-            NpgsqlConnection connection = new NpgsqlConnection(stringOfConnection);
+            NpgsqlConnection connection = new NpgsqlConnection(connectionString);
 
             connection.Open();
 
@@ -473,6 +485,69 @@ namespace MedicalClinic
             connection.Close();
 
             return changedOrAddedRows;
+        }
+
+
+
+        public static void getData(BindingSource bindingSource1, DataGridView scheduleDataGridView, string selectCommand)
+        {
+            try
+            {
+                // Specify a connection string. Replace the given value with a 
+                // valid connection string for a Northwind SQL Server sample
+                // database accessible to your system.
+              //  String connectionString =
+                //  "Server=localhost;Port=5432;User Id=postgres;" +
+                  //                         "Password=84116520231;Database=MedicalClinic";
+
+                // Create a new data adapter based on the specified query.
+                NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter(selectCommand, connectionString);
+
+                // Create a command builder to generate SQL update, insert, and
+                // delete commands based on selectCommand. These are used to
+                // update the database.
+                NpgsqlCommandBuilder commandBuilder = new NpgsqlCommandBuilder(dataAdapter);
+
+                // Populate a new data table and bind it to the BindingSource.
+                DataTable table = new DataTable();
+                table.Locale = System.Globalization.CultureInfo.InvariantCulture;
+                dataAdapter.Fill(table);
+                bindingSource1.DataSource = table;
+
+                // Resize the DataGridView columns to fit the newly loaded content.
+                scheduleDataGridView.AutoResizeColumns(
+                    DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader);
+            }
+            catch (NpgsqlException)
+            {
+                MessageBox.Show("To run this example, replace the value of the " +
+                    "connectionString variable with a connection string that is " +
+                    "valid for your system.");
+            }
+        }
+
+
+
+        public static int getLastIdFromTable(string table)
+        {
+            NpgsqlConnection connection = new NpgsqlConnection(connectionString);
+
+            connection.Open();
+
+            NpgsqlCommand command = new NpgsqlCommand("select max(id) from " + table, connection);
+
+            int id;
+
+            try
+            {
+                id = (int)command.ExecuteScalar();
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return id;
         }
     }
 }

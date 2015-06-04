@@ -54,10 +54,10 @@ namespace MedicalClinic
         {
             if (doctorOrPatientComboBox.SelectedItem == "Доктор")
             {
-                Model.addDoctor(NameTextBox.Text, patronymicTextBox.Text, SurnameTextBox.Text, gender,
-                                dateOfBirthTextBox.Text, passportTextBox1.Text, innTextBox.Text,
-                                snilsTextBox.Text, specializationTextBox.Text, categoryTextBox.Text,
-                                phoneTextBox.Text);
+                Model.addDoctor(NameTextBox.Text, patronymicTextBox.Text, SurnameTextBox.Text,
+                                Convert.ToInt32(specializationTextBox.Text), Convert.ToChar(categoryTextBox.Text),
+                                gender, dateOfBirthTextBox.Text, passportTextBox1.Text, innTextBox.Text,
+                                snilsTextBox.Text, phoneTextBox.Text);
             }
             else
             {

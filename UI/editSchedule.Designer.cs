@@ -31,12 +31,6 @@
             this.doctorOrPatientComboBox = new System.Windows.Forms.ComboBox();
             this.selectLabel = new System.Windows.Forms.Label();
             this.scheduleDataGridView = new System.Windows.Forms.DataGridView();
-            this.fioColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cabinetColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.timeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.policyColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.busyColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.addColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.deleteColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.fromDateTimePicker = new System.Windows.Forms.DateTimePicker();
@@ -59,9 +53,10 @@
             this.doctorOrPatientComboBox.Items.AddRange(new object[] {
             "Доктор",
             "Пациент"});
-            this.doctorOrPatientComboBox.Location = new System.Drawing.Point(115, 10);
+            this.doctorOrPatientComboBox.Location = new System.Drawing.Point(153, 12);
+            this.doctorOrPatientComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.doctorOrPatientComboBox.Name = "doctorOrPatientComboBox";
-            this.doctorOrPatientComboBox.Size = new System.Drawing.Size(100, 25);
+            this.doctorOrPatientComboBox.Size = new System.Drawing.Size(132, 29);
             this.doctorOrPatientComboBox.TabIndex = 0;
             this.doctorOrPatientComboBox.SelectedIndexChanged += new System.EventHandler(this.doctorOrPatientComboBox_SelectedIndexChanged);
             // 
@@ -69,10 +64,10 @@
             // 
             this.selectLabel.AutoSize = true;
             this.selectLabel.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.selectLabel.Location = new System.Drawing.Point(10, 10);
-            this.selectLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.selectLabel.Location = new System.Drawing.Point(13, 12);
+            this.selectLabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.selectLabel.Name = "selectLabel";
-            this.selectLabel.Size = new System.Drawing.Size(71, 17);
+            this.selectLabel.Size = new System.Drawing.Size(89, 21);
             this.selectLabel.TabIndex = 2;
             this.selectLabel.Text = "Выберите";
             // 
@@ -82,53 +77,15 @@
             this.scheduleDataGridView.BackgroundColor = System.Drawing.Color.White;
             this.scheduleDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.scheduleDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.fioColumn,
-            this.cabinetColumn,
-            this.dateColumn,
-            this.timeColumn,
-            this.policyColumn,
-            this.busyColumn,
             this.addColumn,
             this.deleteColumn});
-            this.scheduleDataGridView.Location = new System.Drawing.Point(12, 154);
+            this.scheduleDataGridView.Location = new System.Drawing.Point(16, 190);
+            this.scheduleDataGridView.Margin = new System.Windows.Forms.Padding(4);
             this.scheduleDataGridView.Name = "scheduleDataGridView";
             this.scheduleDataGridView.RowHeadersWidth = 30;
-            this.scheduleDataGridView.Size = new System.Drawing.Size(717, 198);
+            this.scheduleDataGridView.Size = new System.Drawing.Size(956, 244);
             this.scheduleDataGridView.TabIndex = 3;
-            // 
-            // fioColumn
-            // 
-            this.fioColumn.HeaderText = "ФИО";
-            this.fioColumn.MinimumWidth = 15;
-            this.fioColumn.Name = "fioColumn";
-            this.fioColumn.Width = 130;
-            // 
-            // cabinetColumn
-            // 
-            this.cabinetColumn.HeaderText = "Кабинет";
-            this.cabinetColumn.Name = "cabinetColumn";
-            this.cabinetColumn.Width = 60;
-            // 
-            // dateColumn
-            // 
-            this.dateColumn.HeaderText = "Дата приема";
-            this.dateColumn.Name = "dateColumn";
-            // 
-            // timeColumn
-            // 
-            this.timeColumn.HeaderText = "Время приема";
-            this.timeColumn.Name = "timeColumn";
-            // 
-            // policyColumn
-            // 
-            this.policyColumn.HeaderText = "Полис";
-            this.policyColumn.Name = "policyColumn";
-            // 
-            // busyColumn
-            // 
-            this.busyColumn.HeaderText = "Занят";
-            this.busyColumn.Name = "busyColumn";
-            this.busyColumn.Width = 60;
+            this.scheduleDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.scheduleDataGridView_CellContentClick);
             // 
             // addColumn
             // 
@@ -148,25 +105,28 @@
             // 
             // fromDateTimePicker
             // 
-            this.fromDateTimePicker.Location = new System.Drawing.Point(373, 10);
+            this.fromDateTimePicker.Location = new System.Drawing.Point(497, 12);
+            this.fromDateTimePicker.Margin = new System.Windows.Forms.Padding(4);
             this.fromDateTimePicker.Name = "fromDateTimePicker";
-            this.fromDateTimePicker.Size = new System.Drawing.Size(200, 20);
+            this.fromDateTimePicker.Size = new System.Drawing.Size(265, 22);
             this.fromDateTimePicker.TabIndex = 4;
             // 
             // toTimePicker2
             // 
-            this.toTimePicker2.Location = new System.Drawing.Point(373, 50);
+            this.toTimePicker2.Location = new System.Drawing.Point(497, 62);
+            this.toTimePicker2.Margin = new System.Windows.Forms.Padding(4);
             this.toTimePicker2.Name = "toTimePicker2";
-            this.toTimePicker2.Size = new System.Drawing.Size(200, 20);
+            this.toTimePicker2.Size = new System.Drawing.Size(265, 22);
             this.toTimePicker2.TabIndex = 5;
             // 
             // fromLabel
             // 
             this.fromLabel.AutoSize = true;
             this.fromLabel.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.fromLabel.Location = new System.Drawing.Point(303, 10);
+            this.fromLabel.Location = new System.Drawing.Point(404, 12);
+            this.fromLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.fromLabel.Name = "fromLabel";
-            this.fromLabel.Size = new System.Drawing.Size(18, 17);
+            this.fromLabel.Size = new System.Drawing.Size(23, 21);
             this.fromLabel.TabIndex = 6;
             this.fromLabel.Text = "C";
             // 
@@ -174,9 +134,10 @@
             // 
             this.toLabel.AutoSize = true;
             this.toLabel.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.toLabel.Location = new System.Drawing.Point(303, 50);
+            this.toLabel.Location = new System.Drawing.Point(404, 62);
+            this.toLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.toLabel.Name = "toLabel";
-            this.toLabel.Size = new System.Drawing.Size(26, 17);
+            this.toLabel.Size = new System.Drawing.Size(33, 21);
             this.toLabel.TabIndex = 7;
             this.toLabel.Text = "По";
             // 
@@ -184,63 +145,70 @@
             // 
             this.policyLabel.AutoSize = true;
             this.policyLabel.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.policyLabel.Location = new System.Drawing.Point(10, 50);
+            this.policyLabel.Location = new System.Drawing.Point(13, 62);
+            this.policyLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.policyLabel.Name = "policyLabel";
-            this.policyLabel.Size = new System.Drawing.Size(47, 17);
+            this.policyLabel.Size = new System.Drawing.Size(61, 21);
             this.policyLabel.TabIndex = 8;
             this.policyLabel.Text = "Полис";
             this.policyLabel.Visible = false;
             // 
             // policyTextBox
             // 
-            this.policyTextBox.Location = new System.Drawing.Point(115, 50);
+            this.policyTextBox.Location = new System.Drawing.Point(153, 62);
+            this.policyTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.policyTextBox.Name = "policyTextBox";
-            this.policyTextBox.Size = new System.Drawing.Size(100, 20);
+            this.policyTextBox.Size = new System.Drawing.Size(132, 22);
             this.policyTextBox.TabIndex = 9;
             this.policyTextBox.Visible = false;
             // 
             // specializationTextBox
             // 
-            this.specializationTextBox.Location = new System.Drawing.Point(115, 50);
+            this.specializationTextBox.Location = new System.Drawing.Point(153, 62);
+            this.specializationTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.specializationTextBox.Name = "specializationTextBox";
-            this.specializationTextBox.Size = new System.Drawing.Size(100, 20);
+            this.specializationTextBox.Size = new System.Drawing.Size(132, 22);
             this.specializationTextBox.TabIndex = 30;
             // 
             // specializationLabel
             // 
             this.specializationLabel.AutoSize = true;
             this.specializationLabel.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.specializationLabel.Location = new System.Drawing.Point(10, 50);
+            this.specializationLabel.Location = new System.Drawing.Point(13, 62);
+            this.specializationLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.specializationLabel.Name = "specializationLabel";
-            this.specializationLabel.Size = new System.Drawing.Size(101, 17);
+            this.specializationLabel.Size = new System.Drawing.Size(133, 21);
             this.specializationLabel.TabIndex = 29;
             this.specializationLabel.Text = "Специализация";
             // 
             // searchButton
             // 
-            this.searchButton.Location = new System.Drawing.Point(318, 91);
+            this.searchButton.Location = new System.Drawing.Point(424, 112);
+            this.searchButton.Margin = new System.Windows.Forms.Padding(4);
             this.searchButton.Name = "searchButton";
-            this.searchButton.Size = new System.Drawing.Size(100, 35);
+            this.searchButton.Size = new System.Drawing.Size(133, 43);
             this.searchButton.TabIndex = 31;
             this.searchButton.Text = "Поиск";
             this.searchButton.UseVisualStyleBackColor = true;
+            this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
             // 
             // busyCheckBox
             // 
             this.busyCheckBox.AutoSize = true;
             this.busyCheckBox.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.busyCheckBox.Location = new System.Drawing.Point(530, 91);
+            this.busyCheckBox.Location = new System.Drawing.Point(707, 112);
+            this.busyCheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.busyCheckBox.Name = "busyCheckBox";
-            this.busyCheckBox.Size = new System.Drawing.Size(63, 21);
+            this.busyCheckBox.Size = new System.Drawing.Size(77, 25);
             this.busyCheckBox.TabIndex = 33;
             this.busyCheckBox.Text = "Занят";
             this.busyCheckBox.UseVisualStyleBackColor = true;
             // 
             // editSchedule
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(743, 364);
+            this.ClientSize = new System.Drawing.Size(991, 448);
             this.Controls.Add(this.busyCheckBox);
             this.Controls.Add(this.searchButton);
             this.Controls.Add(this.specializationTextBox);
@@ -254,6 +222,7 @@
             this.Controls.Add(this.scheduleDataGridView);
             this.Controls.Add(this.selectLabel);
             this.Controls.Add(this.doctorOrPatientComboBox);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "editSchedule";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Изменить расписание";
@@ -277,14 +246,8 @@
         private System.Windows.Forms.TextBox specializationTextBox;
         private System.Windows.Forms.Label specializationLabel;
         private System.Windows.Forms.Button searchButton;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fioColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cabinetColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dateColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn timeColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn policyColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn busyColumn;
+        private System.Windows.Forms.CheckBox busyCheckBox;
         private System.Windows.Forms.DataGridViewButtonColumn addColumn;
         private System.Windows.Forms.DataGridViewButtonColumn deleteColumn;
-        private System.Windows.Forms.CheckBox busyCheckBox;
     }
 }

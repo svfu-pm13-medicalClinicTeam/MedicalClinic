@@ -60,6 +60,29 @@ namespace MedicalClinic
 
         private void scheduleDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            int idColumn = 2;
+            int cabinetColumn = 5;
+            int patientColumn = 6;
+
+            MessageBox.Show(Convert.ToString(scheduleDataGridView.Rows[e.RowIndex].Cells[idColumn].Value));
+
+            if (e.ColumnIndex == 0)
+            {
+                Model.addAppointment(Convert.ToInt32(scheduleDataGridView.Rows[e.RowIndex].Cells[idColumn].Value), 1, 1);
+            }
+            else
+            {
+                Model.clearAppointment(Convert.ToInt32(scheduleDataGridView.Rows[e.RowIndex].Cells[idColumn].Value));
+            }
+        }
+
+        private void editSchedule_Load(object sender, EventArgs e)
+        {
+            scheduleDataGridView.DataSource = bindingSource1;
+            DateTime fromDate = DateTime.Today;
+            DateTime toDate = DateTime.Today.AddDays(7);
+            Model.getData(bindingSource1, scheduleDataGridView, "",
+                          fromDate.ToShortDateString(), toDate.ToShortDateString(), "");
         }
     }
 }

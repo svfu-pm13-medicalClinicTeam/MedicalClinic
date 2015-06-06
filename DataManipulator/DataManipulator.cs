@@ -17,6 +17,8 @@ namespace MedicalClinic
         static string connectionString = "Server=localhost;Port=5432;User Id=postgres;" +
                                            "Password=;Database=MedicalClinic";
 
+
+
         public static SoftUser getUserByName(string login)
         {
             SoftUser user = null;
@@ -142,6 +144,37 @@ namespace MedicalClinic
 
 
 
+        public static List<Specialization> getSpecialization()
+        {
+            List<Specialization> specializations = new List<Specialization>();
+
+            NpgsqlConnection connection = new NpgsqlConnection(connectionString);
+
+            NpgsqlCommand command = new NpgsqlCommand("select * from specializations", connection);
+
+            connection.Open();
+
+            NpgsqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                try
+                {
+                    specializations.Add(new Specialization(reader.GetInt32(0), reader.GetString(1)));
+                }
+                catch (SpecializationInvalidIdException)
+                {
+                    MessageBox.Show("Неправильный ID при вводе специальностей");
+                }
+            }
+
+            connection.Close();
+
+            return specializations;
+        }
+
+
+
         public static List<Patient> getPatientByCondition(string condition)
         {
             List<Patient> patients = new List<Patient>();
@@ -179,7 +212,149 @@ namespace MedicalClinic
 
 
 
-        public static int insertIntoPatient(Patient patient)
+        public static List<Cabinet> getCabinets()
+        {
+            List<Cabinet> cabinets = new List<Cabinet>();
+
+            NpgsqlConnection connection = new NpgsqlConnection(connectionString);
+
+            NpgsqlCommand command = new NpgsqlCommand("select * from cabinets", connection);
+
+            connection.Open();
+
+            NpgsqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                try
+                {
+                    cabinets.Add(new Cabinet(reader.GetInt32(0), reader.GetString(1)));
+                }
+                catch (CabinetInvalidIdException)
+                {
+                    MessageBox.Show("Неправильный ID при вводе кабинетов");
+                }
+            }
+
+            connection.Close();
+
+            return cabinets;
+        }
+
+
+
+        public static List<Schedule> getSchedule(string query)
+        {
+            List<Schedule> schedule = new List<Schedule>();
+
+            NpgsqlConnection connection = new NpgsqlConnection(connectionString);
+
+            NpgsqlCommand command = new NpgsqlCommand(query, connection);
+
+            connection.Open();
+
+            NpgsqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                try
+                {
+                    schedule.Add(new Schedule(reader.GetInt32(0), reader.GetInt32(1), reader.GetDateTime(2),
+                                              reader.GetInt32(3), reader.GetInt32(4), reader.GetBoolean(5)));
+                }
+                catch (ScheduleInvalidIdException)
+                {
+                    break;
+                }
+            }
+            connection.Close();
+
+            return schedule;
+        }
+
+
+
+        public static int getPatientIdByPolicy(int policy)
+        {
+            NpgsqlConnection connection = new NpgsqlConnection(connectionString);
+
+            connection.Open();
+
+            NpgsqlCommand command = new NpgsqlCommand("select id from patients where policy = :policy", connection);
+
+            command.Parameters.Add("policy", NpgsqlDbType.Varchar);
+
+            command.Prepare();
+
+            command.Parameters[0].Value = policy;
+
+            int id;
+
+            try
+            {
+                id = (int)command.ExecuteScalar();
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return id;
+        }
+
+
+
+        public static void getData(BindingSource bindingSource1, DataGridView scheduleDataGridView, string selectCommand)
+        {
+            try
+            {
+                NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter(selectCommand, connectionString);
+
+                NpgsqlCommandBuilder commandBuilder = new NpgsqlCommandBuilder(dataAdapter);
+
+                DataTable table = new DataTable();
+                table.Locale = System.Globalization.CultureInfo.InvariantCulture;
+                dataAdapter.Fill(table);
+                bindingSource1.DataSource = table;
+
+                scheduleDataGridView.AutoResizeColumns(
+                    DataGridViewAutoSizeColumnsMode.AllCells);
+            }
+            catch (NpgsqlException)
+            {
+                MessageBox.Show("To run this example, replace the value of the " +
+                    "connectionString variable with a connection string that is " +
+                    "valid for your system.");
+            }
+        }
+
+
+
+        public static int getLastIdFromTable(string table)
+        {
+            NpgsqlConnection connection = new NpgsqlConnection(connectionString);
+
+            connection.Open();
+
+            NpgsqlCommand command = new NpgsqlCommand("select max(id) from '" + table + "'", connection);
+
+            int id;
+
+            try
+            {
+                id = (int)command.ExecuteScalar();
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return id;
+        }
+
+
+
+        public static int insertIntoPatients(Patient patient)
         {
             NpgsqlConnection connection = new NpgsqlConnection(connectionString);
 
@@ -211,6 +386,32 @@ namespace MedicalClinic
             command.Parameters[6].Value = patient.Passport;
             command.Parameters[7].Value = patient.Policy;
             command.Parameters[8].Value = patient.TelephoneNumber;
+
+            int changedOrAddedRows = command.ExecuteNonQuery();
+
+            connection.Close();
+
+            return changedOrAddedRows;
+        }
+
+
+
+        public static int insertIntoSpecializations(Specialization specialization)
+        {
+            NpgsqlConnection connection = new NpgsqlConnection(connectionString);
+
+            connection.Open();
+
+            NpgsqlCommand command = new NpgsqlCommand("insert into specializations values (:id, :title);",
+                                                      connection);
+
+            command.Parameters.Add("id", NpgsqlDbType.Integer);
+            command.Parameters.Add("title", NpgsqlDbType.Varchar);
+
+            command.Prepare();
+
+            command.Parameters[0].Value = specialization.ID;
+            command.Parameters[1].Value = specialization.Title;
 
             int changedOrAddedRows = command.ExecuteNonQuery();
 
@@ -266,37 +467,6 @@ namespace MedicalClinic
             connection.Close();
 
             return changedOrAddedRows;
-        }
-
-
-
-        public static List<Schedule> getSchedule(string query)
-        {
-            List<Schedule> schedule = new List<Schedule>();
-           
-            NpgsqlConnection connection = new NpgsqlConnection(connectionString);
-            
-            NpgsqlCommand command = new NpgsqlCommand(query, connection);
-            
-            connection.Open();
-            
-            NpgsqlDataReader reader = command.ExecuteReader();
-
-            while (reader.Read())
-            {
-                try
-                {
-                    schedule.Add(new Schedule(reader.GetInt32(0), reader.GetInt32(1), reader.GetDateTime(2),
-                                              reader.GetInt32(3), reader.GetInt32(4), reader.GetBoolean(5)));
-                }
-                catch (ScheduleInvalidIdException)
-                {
-                    break;
-                }
-            }
-            connection.Close();
-
-            return schedule;
         }
 
 
@@ -362,6 +532,44 @@ namespace MedicalClinic
 
 
 
+        public static int updateTable(string table, string column, string newValue, string condition)
+        {
+            NpgsqlConnection connection = new NpgsqlConnection(connectionString);
+
+            connection.Open();
+
+            NpgsqlCommand command = new NpgsqlCommand("update " + table + " set " + column + " = " + 
+                                                      newValue + " " + condition, connection);
+
+            int changedOrAddedRows = command.ExecuteNonQuery();
+
+            connection.Close();
+
+            return changedOrAddedRows;
+        }
+
+
+
+        public static int updateTable(string table, string column1, string newValue1,
+                                                    string column2, string newValue2, string condition)
+        {
+            NpgsqlConnection connection = new NpgsqlConnection(connectionString);
+
+            connection.Open();
+
+            NpgsqlCommand command = new NpgsqlCommand("update " + table + " set " + column1 + " = " +
+                                                      newValue1 + ", " + column2 + " = " + newValue2 
+                                                      + condition, connection);
+
+            int changedOrAddedRows = command.ExecuteNonQuery();
+
+            connection.Close();
+
+            return changedOrAddedRows;
+        }
+
+
+
         public static int deleteRecordFromTable(string tableName, int id)
         {
             NpgsqlConnection connection = new NpgsqlConnection(connectionString);
@@ -382,37 +590,6 @@ namespace MedicalClinic
 
             return deletedOrAddedRows;
         }
-
-
-
-        public static int getPatientIdByPolicy(int policy)
-        {
-            NpgsqlConnection connection = new NpgsqlConnection(connectionString);
-
-            connection.Open();
-
-            NpgsqlCommand command = new NpgsqlCommand("select id from patients where policy = :policy", connection);
-
-            command.Parameters.Add("policy", NpgsqlDbType.Varchar);
-
-            command.Prepare();
-
-            command.Parameters[0].Value = policy;
-
-            int id;
-
-            try
-            {
-                id = (int)command.ExecuteScalar();
-            }
-            finally
-            {
-                connection.Close();
-            }
-
-            return id;
-        }
-
 
 /*
         public static int updateSchedule(int id, int polis, bool busy)
@@ -485,69 +662,6 @@ namespace MedicalClinic
             connection.Close();
 
             return changedOrAddedRows;
-        }
-
-
-
-        public static void getData(BindingSource bindingSource1, DataGridView scheduleDataGridView, string selectCommand)
-        {
-            try
-            {
-                // Specify a connection string. Replace the given value with a 
-                // valid connection string for a Northwind SQL Server sample
-                // database accessible to your system.
-              //  String connectionString =
-                //  "Server=localhost;Port=5432;User Id=postgres;" +
-                  //                         "Password=84116520231;Database=MedicalClinic";
-
-                // Create a new data adapter based on the specified query.
-                NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter(selectCommand, connectionString);
-
-                // Create a command builder to generate SQL update, insert, and
-                // delete commands based on selectCommand. These are used to
-                // update the database.
-                NpgsqlCommandBuilder commandBuilder = new NpgsqlCommandBuilder(dataAdapter);
-
-                // Populate a new data table and bind it to the BindingSource.
-                DataTable table = new DataTable();
-                table.Locale = System.Globalization.CultureInfo.InvariantCulture;
-                dataAdapter.Fill(table);
-                bindingSource1.DataSource = table;
-
-                // Resize the DataGridView columns to fit the newly loaded content.
-                scheduleDataGridView.AutoResizeColumns(
-                    DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader);
-            }
-            catch (NpgsqlException)
-            {
-                MessageBox.Show("To run this example, replace the value of the " +
-                    "connectionString variable with a connection string that is " +
-                    "valid for your system.");
-            }
-        }
-
-
-
-        public static int getLastIdFromTable(string table)
-        {
-            NpgsqlConnection connection = new NpgsqlConnection(connectionString);
-
-            connection.Open();
-
-            NpgsqlCommand command = new NpgsqlCommand("select max(id) from " + table, connection);
-
-            int id;
-
-            try
-            {
-                id = (int)command.ExecuteScalar();
-            }
-            finally
-            {
-                connection.Close();
-            }
-
-            return id;
         }
     }
 }

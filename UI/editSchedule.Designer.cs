@@ -226,6 +226,7 @@
             this.Name = "editSchedule";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Изменить расписание";
+            this.Load += new System.EventHandler(this.editSchedule_Load);
             ((System.ComponentModel.ISupportInitialize)(this.scheduleDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

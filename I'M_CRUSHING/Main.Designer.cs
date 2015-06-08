@@ -31,6 +31,8 @@
             this.doctorOrPatientComboBox = new System.Windows.Forms.ComboBox();
             this.selectLabel = new System.Windows.Forms.Label();
             this.scheduleDataGridView = new System.Windows.Forms.DataGridView();
+            this.addColumn = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.deleteColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.fromDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.toTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.fromLabel = new System.Windows.Forms.Label();
@@ -46,14 +48,12 @@
             this.аыToolStripMenuItem = new System.Windows.Forms.ToolStripSeparator();
             this.doctorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.админToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.addUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addColumn = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.deleteColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.scheduleDataGridView)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -90,24 +90,40 @@
             this.scheduleDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.addColumn,
             this.deleteColumn});
-            this.scheduleDataGridView.Location = new System.Drawing.Point(12, 224);
+            this.scheduleDataGridView.Location = new System.Drawing.Point(12, 200);
             this.scheduleDataGridView.Name = "scheduleDataGridView";
             this.scheduleDataGridView.RowHeadersWidth = 30;
-            this.scheduleDataGridView.Size = new System.Drawing.Size(639, 146);
+            this.scheduleDataGridView.Size = new System.Drawing.Size(639, 170);
             this.scheduleDataGridView.TabIndex = 3;
+            // 
+            // addColumn
+            // 
+            this.addColumn.HeaderText = "Записать";
+            this.addColumn.Name = "addColumn";
+            this.addColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.addColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // deleteColumn
+            // 
+            this.deleteColumn.HeaderText = "Отписать";
+            this.deleteColumn.Name = "deleteColumn";
+            this.deleteColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.deleteColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // fromDateTimePicker
             // 
+            this.fromDateTimePicker.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.fromDateTimePicker.Location = new System.Drawing.Point(431, 39);
             this.fromDateTimePicker.Name = "fromDateTimePicker";
-            this.fromDateTimePicker.Size = new System.Drawing.Size(200, 20);
+            this.fromDateTimePicker.Size = new System.Drawing.Size(200, 25);
             this.fromDateTimePicker.TabIndex = 4;
             // 
             // toTimePicker2
             // 
+            this.toTimePicker2.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.toTimePicker2.Location = new System.Drawing.Point(431, 79);
             this.toTimePicker2.Name = "toTimePicker2";
-            this.toTimePicker2.Size = new System.Drawing.Size(200, 20);
+            this.toTimePicker2.Size = new System.Drawing.Size(200, 25);
             this.toTimePicker2.TabIndex = 5;
             // 
             // fromLabel
@@ -143,17 +159,19 @@
             // 
             // policyTextBox
             // 
+            this.policyTextBox.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.policyTextBox.Location = new System.Drawing.Point(128, 83);
             this.policyTextBox.Name = "policyTextBox";
-            this.policyTextBox.Size = new System.Drawing.Size(100, 20);
+            this.policyTextBox.Size = new System.Drawing.Size(100, 25);
             this.policyTextBox.TabIndex = 9;
             this.policyTextBox.Visible = false;
             // 
             // specializationTextBox
             // 
+            this.specializationTextBox.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.specializationTextBox.Location = new System.Drawing.Point(128, 83);
             this.specializationTextBox.Name = "specializationTextBox";
-            this.specializationTextBox.Size = new System.Drawing.Size(100, 20);
+            this.specializationTextBox.Size = new System.Drawing.Size(100, 25);
             this.specializationTextBox.TabIndex = 30;
             // 
             // specializationLabel
@@ -169,7 +187,7 @@
             // searchButton
             // 
             this.searchButton.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.searchButton.Location = new System.Drawing.Point(275, 146);
+            this.searchButton.Location = new System.Drawing.Point(275, 131);
             this.searchButton.Name = "searchButton";
             this.searchButton.Size = new System.Drawing.Size(112, 47);
             this.searchButton.TabIndex = 31;
@@ -201,18 +219,18 @@
             // patientToolStripMenuItem
             // 
             this.patientToolStripMenuItem.Name = "patientToolStripMenuItem";
-            this.patientToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.patientToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.patientToolStripMenuItem.Text = "Пациент";
             // 
             // аыToolStripMenuItem
             // 
             this.аыToolStripMenuItem.Name = "аыToolStripMenuItem";
-            this.аыToolStripMenuItem.Size = new System.Drawing.Size(149, 6);
+            this.аыToolStripMenuItem.Size = new System.Drawing.Size(118, 6);
             // 
             // doctorToolStripMenuItem
             // 
             this.doctorToolStripMenuItem.Name = "doctorToolStripMenuItem";
-            this.doctorToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.doctorToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.doctorToolStripMenuItem.Text = "Доктор";
             // 
             // menuStrip1
@@ -226,6 +244,21 @@
             this.menuStrip1.Size = new System.Drawing.Size(664, 24);
             this.menuStrip1.TabIndex = 39;
             this.menuStrip1.Text = "menuStrip1";
+            // 
+            // файлToolStripMenuItem
+            // 
+            this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.выходToolStripMenuItem});
+            this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
+            this.файлToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.файлToolStripMenuItem.Text = "Файл";
+            // 
+            // выходToolStripMenuItem
+            // 
+            this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
+            this.выходToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
+            this.выходToolStripMenuItem.Text = "Выход";
+            this.выходToolStripMenuItem.Click += new System.EventHandler(this.выходToolStripMenuItem_Click);
             // 
             // админToolStripMenuItem1
             // 
@@ -255,36 +288,7 @@
             this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
             this.changePasswordToolStripMenuItem.Text = "Изменить пароль";
             // 
-            // файлToolStripMenuItem
-            // 
-            this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.выходToolStripMenuItem});
-            this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
-            this.файлToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
-            this.файлToolStripMenuItem.Text = "Файл";
-            // 
-            // выходToolStripMenuItem
-            // 
-            this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
-            this.выходToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.выходToolStripMenuItem.Text = "Выход";
-            this.выходToolStripMenuItem.Click += new System.EventHandler(this.выходToolStripMenuItem_Click);
-            // 
-            // addColumn
-            // 
-            this.addColumn.HeaderText = "Записать";
-            this.addColumn.Name = "addColumn";
-            this.addColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.addColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // deleteColumn
-            // 
-            this.deleteColumn.HeaderText = "Отписать";
-            this.deleteColumn.Name = "deleteColumn";
-            this.deleteColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.deleteColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // main
+            // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -306,7 +310,7 @@
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(680, 420);
             this.MinimumSize = new System.Drawing.Size(680, 420);
-            this.Name = "main";
+            this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Домашняя страница";
             ((System.ComponentModel.ISupportInitialize)(this.scheduleDataGridView)).EndInit();

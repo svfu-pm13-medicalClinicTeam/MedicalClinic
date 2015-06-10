@@ -42,7 +42,6 @@
             this.deleteUserButton.TabIndex = 14;
             this.deleteUserButton.Text = "Удалить";
             this.deleteUserButton.UseVisualStyleBackColor = true;
-            this.deleteUserButton.Click += new System.EventHandler(this.deleUserButton_Click);
             // 
             // userTextBox
             // 
@@ -65,10 +64,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(334, 212);
+            this.ClientSize = new System.Drawing.Size(342, 212);
             this.Controls.Add(this.deleteUserButton);
             this.Controls.Add(this.userTextBox);
             this.Controls.Add(this.userLabel);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(358, 250);
+            this.MinimumSize = new System.Drawing.Size(358, 250);
             this.Name = "deleteUser";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Удалить пользователя";

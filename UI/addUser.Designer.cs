@@ -44,7 +44,6 @@
             this.addUserButton.TabIndex = 9;
             this.addUserButton.Text = "Добавить";
             this.addUserButton.UseVisualStyleBackColor = true;
-            this.addUserButton.Click += new System.EventHandler(this.addUserButton_Click);
             // 
             // passwordTextBox
             // 
@@ -85,16 +84,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(334, 212);
+            this.ClientSize = new System.Drawing.Size(342, 212);
             this.Controls.Add(this.addUserButton);
             this.Controls.Add(this.passwordTextBox);
             this.Controls.Add(this.userTextBox);
             this.Controls.Add(this.passwordLabel);
             this.Controls.Add(this.userLabel);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(350, 250);
-            this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(350, 250);
+            this.MaximumSize = new System.Drawing.Size(358, 250);
+            this.MinimumSize = new System.Drawing.Size(358, 250);
             this.Name = "addUser";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Добавить пользователя";

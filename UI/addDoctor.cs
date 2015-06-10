@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace MedicalClinic
 {
-    public partial class deleteUser : Form
+    public partial class addDoctor : Form
     {
-        public deleteUser()
+        public addDoctor()
         {
             InitializeComponent();
         }

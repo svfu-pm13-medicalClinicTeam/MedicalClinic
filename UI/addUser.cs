@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MedicalClinic
@@ -14,20 +15,6 @@ namespace MedicalClinic
         public addUser()
         {
             InitializeComponent();
-        }
-
-        private void addUserButton_Click(object sender, EventArgs e)
-        {
-            if (userTextBox.Text != "" && passwordTextBox.Text != "")
-            {
-                Model.addUser(userTextBox.Text, passwordTextBox.Text);
-                MessageBox.Show("Пользователь успешно добавлен");
-                this.Close();
-            }
-            else
-            {
-                MessageBox.Show("Заполнены не все поля");
-            }
         }
     }
 }
